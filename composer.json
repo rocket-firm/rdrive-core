@@ -18,26 +18,27 @@
   "authors": [
     {
       "name": "Kazezov Altynbek",
-      "email": ""
+      "email": "admin@admin.com"
     },
     {
       "name": "Maxim Ten",
-      "email": ""
+      "email": "admin@admin.com"
     },
     {
       "name": "Ivan Mosyagin",
-      "email": ""
+      "email": "admin@admin.com"
     },
     {
       "name": "Baurzhan Sabyr",
-      "email": ""
+      "email": "admin@admin.com"
     }
   ],
   "require": {
     "doctrine/dbal": "^2.9"
   },
   "require-dev": {
-    "phpunit/phpunit": "^7.5|^8.0"
+    "phpunit/phpunit": "^7.5|^8.0",
+    "laravel/framework": "~5.8.0"
   },
   "autoload": {
     "psr-4": {
