@@ -42,12 +42,12 @@
   },
   "autoload": {
     "psr-4": {
-      "rocketfirm\\rdrive\\": "src/"
+      "Rocketfirm\\Rdrive\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "rocketfirm\\rdrive\\tests\\": "tests/"
+      "Rocketfirm\\Rdrive\\Tests\\": "tests/"
     }
   },
   "minimum-stability": "dev"

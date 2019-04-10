@@ -1,12 +1,11 @@
 <?php
 
-namespace rocketfirm\rdrive\commands;
+namespace Rocketfirm\Rdrive\Commands;
 
 use Illuminate\Console\Command;
 
 class InstallCommand extends Command
 {
-
     /**
      * The console command name.
      *
