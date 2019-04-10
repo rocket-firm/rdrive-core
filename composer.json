@@ -1,0 +1,53 @@
+{
+  "name": "rocket-firm/rdrive",
+  "description": "Laravel Admin Package",
+  "keywords": [
+    "laravel",
+    "admin",
+    "panel",
+    "react",
+    "api",
+    "spa"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/rocket-firm/rdrive",
+  "support": {
+    "issues": "https://github.com/rocket-firm/rdrive/issues",
+    "source": "https://github.com/rocket-firm/rdrive"
+  },
+  "authors": [
+    {
+      "name": "Kazezov Altynbek",
+      "email": ""
+    },
+    {
+      "name": "Maxim Ten",
+      "email": ""
+    },
+    {
+      "name": "Ivan Mosyagin",
+      "email": ""
+    },
+    {
+      "name": "Baurzhan Sabyr",
+      "email": ""
+    }
+  ],
+  "require": {
+    "doctrine/dbal": "^2.9"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5|^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "rocketfirm\\rdrive\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "rocketfirm\\rdrive\\tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "stable"
+}
