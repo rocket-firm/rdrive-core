@@ -28,6 +28,6 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->info('Display this on the screen');
+        $this->info('Display this on the screen test');
     }
 }
