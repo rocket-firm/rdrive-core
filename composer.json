@@ -50,5 +50,5 @@
       "rocketfirm\\rdrive\\tests\\": "tests/"
     }
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "dev"
 }
