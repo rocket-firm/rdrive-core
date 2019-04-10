@@ -50,5 +50,12 @@
       "Rocketfirm\\Rdrive\\Tests\\": "tests/"
     }
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Rocketfirm\\Rdrive\\Providers\\RdriveServiceProvider"
+      ]
+    }
+  }
 }
