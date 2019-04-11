@@ -3,6 +3,7 @@
 namespace Rocketfirm\Rdrive\Commands;
 
 use Illuminate\Console\Command;
+use Rocketfirm\Rdrive\Providers\RdriveServiceProvider;
 
 class InstallCommand extends Command
 {
@@ -23,10 +24,12 @@ class InstallCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
-        $this->info('Display this on the screen test');
+        $this->info('Installing...');
+
+        $this->call('vendor:publish', ['--provider' => RdriveServiceProvider::class, '--tag' => ['config'], '--force' => true]);
     }
 }

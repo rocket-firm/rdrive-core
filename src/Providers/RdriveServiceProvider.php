@@ -13,8 +13,35 @@ class RdriveServiceProvider extends AuthServiceProvider
     public function register()
     {
         if ($this->app->runningInConsole()) {
+            $this->registerPublishableResources();
             $this->registerConsoleCommands();
         }
+    }
+
+    /**
+     * Register the publishable files.
+     */
+    private function registerPublishableResources()
+    {
+        $publishablePath = dirname(__DIR__).'/../publishable';
+
+        $publishable = [
+            'config' => [
+                "{$publishablePath}/config/rdrive.php" => config_path('rdrive.php'),
+            ],
+
+        ];
+
+        foreach ($publishable as $group => $paths) {
+            $this->publishes($paths, $group);
+        }
+    }
+
+    public function registerConfigs()
+    {
+        $this->mergeConfigFrom(
+            dirname(__DIR__).'/../publishable/config/rdrive.php', 'rdrive'
+        );
     }
 
     /**
