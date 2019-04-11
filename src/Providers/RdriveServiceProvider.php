@@ -12,10 +12,21 @@ class RdriveServiceProvider extends AuthServiceProvider
      */
     public function register()
     {
+        $this->registerConfigs();
+
         if ($this->app->runningInConsole()) {
             $this->registerPublishableResources();
             $this->registerConsoleCommands();
         }
+    }
+
+    /**
+     * Bootstrap the application services.
+     */
+    public function boot()
+    {
+        $this->loadViewsFrom(__DIR__ . '/../../publishable/resources/views', 'rdrive');
+        $this->loadRoutesFrom(__DIR__.'/../App/routes/web.php');
     }
 
     /**
@@ -28,6 +39,15 @@ class RdriveServiceProvider extends AuthServiceProvider
         $publishable = [
             'config' => [
                 "{$publishablePath}/config/rdrive.php" => config_path('rdrive.php'),
+            ],
+            'views' => [
+                "{$publishablePath}/resources/views" => resource_path('views/vendor/rdrive'),
+            ],
+            'assets' => [
+                "{$publishablePath}/resources/assets" => resource_path('assets/admin'),
+            ],
+            'public' => [
+                "{$publishablePath}/public" => public_path('admin'),
             ],
 
         ];
@@ -49,6 +69,8 @@ class RdriveServiceProvider extends AuthServiceProvider
      */
     private function registerConsoleCommands()
     {
-        $this->commands(InstallCommand::class);
+        $this->commands([
+            InstallCommand::class
+        ]);
     }
 }

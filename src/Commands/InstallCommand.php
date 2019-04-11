@@ -4,6 +4,7 @@ namespace Rocketfirm\Rdrive\Commands;
 
 use Illuminate\Console\Command;
 use Rocketfirm\Rdrive\Providers\RdriveServiceProvider;
+use Symfony\Component\Console\Input\InputOption;
 
 class InstallCommand extends Command
 {
@@ -21,6 +22,13 @@ class InstallCommand extends Command
      */
     protected $description = 'Install the Rocket Drive package';
 
+    protected function getOptions()
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when in production', null]
+        ];
+    }
+
     /**
      * Execute the console command.
      *
@@ -30,6 +38,10 @@ class InstallCommand extends Command
     {
         $this->info('Installing...');
 
-        $this->call('vendor:publish', ['--provider' => RdriveServiceProvider::class, '--tag' => ['config'], '--force' => true]);
+        $this->info('Publishing the config file');
+        $this->call('vendor:publish', ['--provider' => RdriveServiceProvider::class, '--tag' => ['config', 'public'], '--force' => $this->option('force')]);
+
+        $this->info('Migrating the database tables into your application');
+        $this->call('migrate', ['--force' => $this->option('force')]);
     }
 }
