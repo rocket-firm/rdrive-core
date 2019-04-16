@@ -44,7 +44,7 @@ class RdriveServiceProvider extends AuthServiceProvider
                 "{$publishablePath}/resources/views" => resource_path('views/vendor/rdrive'),
             ],
             'assets' => [
-                "{$publishablePath}/resources/assets" => resource_path('assets/admin'),
+                "{$publishablePath}/resources/assets" => resource_path('admin'),
             ],
             'public' => [
                 "{$publishablePath}/public" => public_path('admin'),
