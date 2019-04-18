@@ -27,6 +27,7 @@ class RdriveServiceProvider extends AuthServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../../publishable/resources/views', 'rdrive');
         $this->loadRoutesFrom(__DIR__.'/../App/routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/../App/routes/api.php');
     }
 
     /**
