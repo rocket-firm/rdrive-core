@@ -2,19 +2,10 @@
 
 namespace Rocketfirm\Rdrive\Http\Controllers;
 
-use App\Http\Controllers\BaseController;
-use App\Http\Resources\UserProfileResource;
-use App\Http\Resources\UserResource;
-use App\Http\Resources\AttributeResource;
-use App\Models\Flat;
-use App\Models\RealEstate;
-use App\Models\SmsVerification;
-use App\Models\User;
-use App\Models\UserStatus;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class UserController extends BaseController
+class UserController extends RdriveBaseController
 {
     protected $modelClass = User::class;
     protected $modelResourceClass = UserResource::class;
@@ -24,6 +15,8 @@ class UserController extends BaseController
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws ValidationException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request)
     {
@@ -32,11 +25,8 @@ class UserController extends BaseController
         $this->validate($request, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'phone' => 'required|min:11|max:11|unique:users',
             'email' => 'string|max:255|email|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'min_budget' => 'integer',
-            'max_budget' => 'integer'
         ]);
 
         $request['password'] = \Hash::make($request['password']);
@@ -52,6 +42,8 @@ class UserController extends BaseController
      * @param  \Illuminate\Http\Request $request
      * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws ValidationException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, $id)
     {
@@ -62,13 +54,8 @@ class UserController extends BaseController
         $this->validate($request, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'birth_date' => 'string|max:255',
-            'city_id' => 'required|integer|max:255',
             'email' => 'string|max:255|email|unique:users,email,' . $model->id,
-            'phone' => 'required|min:11|max:11|unique:users,phone,' . $model->id,
             'password' => 'required|sometimes|string|min:6|confirmed',
-            'min_budget' => 'integer',
-            'max_budget' => 'integer'
         ]);
 
         if (!empty($request->password)) {
@@ -78,16 +65,6 @@ class UserController extends BaseController
         $model->update($request->all());
 
         return $this->serializeModel($model);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function profile()
-    {
-        return new UserProfileResource(auth('api')->user());
     }
 
     public function register(Request $request)
@@ -228,105 +205,5 @@ class UserController extends BaseController
         }
 
         return new UserProfileResource(($user));
-    }
-
-    /**
-     * Добавление в избранное
-     *
-     * @param Request $request
-     * @return mixed
-     * @throws ValidationException
-     */
-    public function addFavorites(Request $request)
-    {
-        /** @var User $user */
-        $user = auth('api')->user();
-
-        $this->validate($request, [
-            'item_id' => 'required',
-            'type' => ['required', 'regex:/\b(real_estate|flat)\b/'],
-        ]);
-
-        $itemIds = (array) $request['item_id'];
-
-        if (is_array($itemIds) && !empty($itemIds)) {
-            if ($request['type'] === 'real_estate') {
-                foreach ($itemIds as $itemId) {
-                    if (RealEstate::where('item_id', '=', $itemId)->exists()) {
-                        $user->favoriteRealEstates()->attach($itemId, ['type' => $request['type']]);
-                    } else {
-                        throw ValidationException::withMessages(['item_id' => 'item_id ' . $itemId . ' не найден.']);
-                    }
-                }
-            } elseif ($request['type'] === 'flat') {
-                foreach ($itemIds as $itemId) {
-                    if (Flat::where('item_id', '=', $itemId)->exists()) {
-                        $user->favoriteFlats()->attach($itemId, ['type' => $request['type']]);
-                    } else {
-                        throw ValidationException::withMessages(['item_id' => 'item_id ' . $itemId . ' не найден.']);
-                    }
-                }
-            }
-
-            return new UserProfileResource(($user));
-        }
-
-        throw ValidationException::withMessages(['item_id' => 'item_id не может быть пустым.']);
-    }
-
-    /**
-     * Убрать из избранных
-     *
-     * @param Request $request
-     * @return mixed
-     * @throws ValidationException
-     */
-    public function removeFavorites(Request $request)
-    {
-        /** @var User $user */
-        $user = auth('api')->user();
-
-        $this->validate($request, [
-            'item_id' => 'required',
-            'type' => ['required', 'regex:/\b(real_estate|flat)\b/'],
-        ]);
-
-        $itemIds = (array) $request['item_id'];
-
-        if (is_array($itemIds) && !empty($itemIds)) {
-            if ($request['type'] === 'real_estate') {
-                foreach ($itemIds as $itemId) {
-                    if (RealEstate::where('item_id', '=', $itemId)->exists()) {
-                        $user->favoriteRealEstates()->detach($itemId, ['type' => $request['type']]);
-                    } else {
-                        throw ValidationException::withMessages(['item_id' => 'item_id ' . $itemId . ' не найден.']);
-                    }
-                }
-            } elseif ($request['type'] === 'flat') {
-                foreach ($itemIds as $itemId) {
-                    if (Flat::where('item_id', '=', $itemId)->exists()) {
-                        $user->favoriteFlats()->detach($itemId, ['type' => $request['type']]);
-                    } else {
-                        throw ValidationException::withMessages(['item_id' => 'item_id ' . $itemId . ' не найден.']);
-                    }
-                }
-            }
-
-            return new UserProfileResource(($user));
-        }
-
-        throw ValidationException::withMessages(['item_id' => 'item_id не может быть пустым.']);
-    }
-
-    /**
-     * Возвращаем список статусов
-     *
-     * @return array
-     */
-    public function getStatuses()
-    {
-        $statuses = User::$statuses;
-
-        return response()->json(['data' => $statuses]);
     }
 }

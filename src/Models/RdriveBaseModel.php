@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\BaseModel
+ * Rocketfirm\Rdrive\Models\RdriveBaseModel
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\Rocketfirm\Rdrive\Models\RdriveBaseModel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rocketfirm\Rdrive\Models\RdriveBaseModel newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rocketfirm\Rdrive\Models\RdriveBaseModel query()
+ * @mixin \Eloquent
  */
 class RdriveBaseModel extends Model
 {
@@ -39,18 +40,6 @@ class RdriveBaseModel extends Model
         parent::boot();
 
         static::addGlobalScope(new FilterScope());
-    }
-
-    public function save(array $options = [])
-    {
-        if (isset(static::$uploadFields)) {
-            foreach(static::$uploadFields as $field) {
-                $this->$field = preg_replace('/https?:\/\/.*?\//', '/', $this->$field);
-                $this->$field = preg_replace('/^\/\//', '/', $this->$field);
-                $this->$field = preg_replace('/^\/uploads\//', '', $this->$field);
-            }
-        }
-        return parent::save($options);
     }
 
     /**
