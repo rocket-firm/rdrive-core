@@ -8,11 +8,6 @@ return [
         'enabled' => true,
 
         /*
-         * Select default language
-         */
-        'default' => 'en',
-
-        /*
          * Set languages that are supported.
          */
         'locales' => [
