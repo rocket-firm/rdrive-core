@@ -2,8 +2,11 @@
 
 namespace Rocketfirm\Rdrive\Providers;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
 use Rocketfirm\Rdrive\Commands\InstallCommand;
+use Rocketfirm\Rdrive\Facades\Rdrive as RdriveFacade;
+use Rocketfirm\Rdrive\Rdrive;
 
 class RdriveServiceProvider extends AuthServiceProvider
 {
@@ -12,6 +15,13 @@ class RdriveServiceProvider extends AuthServiceProvider
      */
     public function register()
     {
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Rdrive', RdriveFacade::class);
+
+        $this->app->singleton('rdrive', function () {
+            return new Rdrive();
+        });
+
         $this->registerConfigs();
 
         if ($this->app->runningInConsole()) {
