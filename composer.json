@@ -58,7 +58,10 @@
     "laravel": {
       "providers": [
         "Rocketfirm\\Rdrive\\Providers\\RdriveServiceProvider"
-      ]
+      ],
+      "aliases": {
+        "Rdrive": "Rocketfirm\\Rdrive\\Facades\\Rdrive"
+      }
     }
   }
 }
