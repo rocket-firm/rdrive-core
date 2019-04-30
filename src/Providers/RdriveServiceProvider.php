@@ -15,9 +15,6 @@ class RdriveServiceProvider extends AuthServiceProvider
      */
     public function register()
     {
-        $loader = AliasLoader::getInstance();
-        $loader->alias('Rdrive', RdriveFacade::class);
-
         $this->app->singleton('rdrive', function () {
             return new Rdrive();
         });
