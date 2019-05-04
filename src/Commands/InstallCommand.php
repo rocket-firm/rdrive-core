@@ -41,6 +41,11 @@ class InstallCommand extends Command
         $this->info('Publishing the config file');
         $this->call('vendor:publish', ['--provider' => RdriveServiceProvider::class, '--tag' => ['config', 'public'], '--force' => $this->option('force')]);
 
+        /**
+         * Publish config from `dimsav/laravel-translatable` package
+         */
+        $this->call('vendor:publish', ['--tag' => ['translatable']]);
+
         $this->info('Migrating the database tables into your application');
         $this->call('migrate', ['--force' => $this->option('force')]);
     }

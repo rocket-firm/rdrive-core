@@ -17,8 +17,8 @@
   },
   "authors": [
     {
-      "name": "Kazezov Altynbek",
-      "email": "admin@admin.com"
+      "name": "Altynbek Kazezov",
+      "email": "altynbek.kazezov.97@gmail.com"
     },
     {
       "name": "Maxim Ten",
@@ -37,7 +37,8 @@
     "doctrine/dbal": "^2.9",
     "ext-json": "*",
     "laravel/passport": "^7.2",
-    "sven/flex-env": "^2.1"
+    "sven/flex-env": "^2.1",
+    "dimsav/laravel-translatable": "^9.4"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.5|^8.0",
