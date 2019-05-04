@@ -1,5 +1,5 @@
 {
-  "name": "rocket-firm/rdrive",
+  "name": "rocket-firm/rdrive-core",
   "description": "Rocket Drive - Laravel Admin Package",
   "keywords": [
     "laravel",
@@ -10,10 +10,10 @@
     "spa"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/rocket-firm/rdrive",
+  "homepage": "https://github.com/rocket-firm/rdrive-core",
   "support": {
-    "issues": "https://github.com/rocket-firm/rdrive/issues",
-    "source": "https://github.com/rocket-firm/rdrive"
+    "issues": "https://github.com/rocket-firm/rdrive-core/issues",
+    "source": "https://github.com/rocket-firm/rdrive-core"
   },
   "authors": [
     {
