@@ -5,7 +5,7 @@ namespace Rocketfirm\Rdrive\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class UserController extends RdriveBaseController
+class UserController extends RdriveCrudController
 {
     protected $modelClass = User::class;
     protected $modelResourceClass = UserResource::class;
