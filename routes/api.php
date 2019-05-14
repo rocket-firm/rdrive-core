@@ -1,17 +1,28 @@
 <?php
 
+$namespace = '\Rocketfirm\Rdrive\Http\Controllers';
+
 Route::group([
     'as' => 'api.admin.',
     'prefix' => 'api/admin',
+    'namespace' => $namespace,
+//    'middleware' => ['api', 'auth:api']
 ], function () {
 
-    // Schemas Routes
+    // Schemas
     Route::group([
         'as' => 'schemas.',
         'prefix' => 'schemas',
-        'middleware' => 'api'
     ], function () {
-        Route::get('/', ['uses' => 'Rocketfirm\Rdrive\Http\Controllers\SchemaController@index', 'as' => 'index']);
+        Route::get('/', ['uses' => 'SchemaController@index', 'as' => 'index']);
+    });
+
+    // Localizations
+    Route::group([
+        'as' => 'localizations.',
+        'prefix' => 'localizations',
+    ], function () {
+        Route::get('locales', ['uses' => 'LocalizationController@getLocales', 'as' => 'locales']);
     });
 
 });
