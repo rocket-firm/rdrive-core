@@ -15,13 +15,12 @@ class CreateLocalizationsTable extends Migration
     {
         Schema::create('localizations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('item_id');
             $table->string('lang', 32);
             $table->string('group');
             $table->string('key');
             $table->text('value')->nullable();
 
-            $table->unique(['item_id', 'lang', 'group', 'key']);
+            $table->unique(['lang', 'group', 'key']);
         });
     }
 
