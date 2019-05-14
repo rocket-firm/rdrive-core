@@ -132,7 +132,7 @@ class LocalizationController extends RdriveTranslatableController
      */
     public function getLanguages()
     {
-        $languages = config('rdrive.multilanguage.locales');
+        $languages = config('translatable.locales');
         $defaultLanguage = config('app.locale');
         return response()->json([
             'data' => $languages,
