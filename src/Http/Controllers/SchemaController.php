@@ -12,10 +12,7 @@ class SchemaController extends Controller
         return
             [
                 'success' => true,
-                'data' => array_merge(
-                    [new SchemaResource(new Setting)]
-                )
+                'data' => config('rdrive.schemas', [])
             ];
     }
-
 }
