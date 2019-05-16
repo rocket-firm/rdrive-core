@@ -2,10 +2,8 @@
 
 namespace Rocketfirm\Rdrive\Providers;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
-use Rocketfirm\Rdrive\Commands\InstallCommand;
-use Rocketfirm\Rdrive\Facades\Rdrive as RdriveFacade;
+use Rocketfirm\Rdrive\Console\InstallCommand;
 use Rocketfirm\Rdrive\Rdrive;
 
 class RdriveServiceProvider extends AuthServiceProvider
@@ -20,11 +18,6 @@ class RdriveServiceProvider extends AuthServiceProvider
         });
 
         $this->registerConfigs();
-
-        if ($this->app->runningInConsole()) {
-            $this->registerPublishableResources();
-            $this->registerConsoleCommands();
-        }
     }
 
     /**
@@ -32,10 +25,14 @@ class RdriveServiceProvider extends AuthServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../../migrations');
-        $this->loadViewsFrom(__DIR__ . '/../../publishable/resources/views', 'rdrive');
-        $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
-        $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
+        if ($this->app->runningInConsole()) {
+            $this->registerMigrations();
+            $this->registerPublishableResources();
+            $this->registerConsoleCommands();
+        }
+
+        $this->registerRoutes();
+        $this->registerViews();
     }
 
     /**
@@ -43,22 +40,18 @@ class RdriveServiceProvider extends AuthServiceProvider
      */
     private function registerPublishableResources()
     {
-        $publishablePath = dirname(__DIR__).'/../publishable';
+        $publishablePath = dirname(__DIR__) . '/..';
 
         $publishable = [
-            'config' => [
+            'rdrive-config' => [
                 "{$publishablePath}/config/rdrive.php" => config_path('rdrive.php'),
             ],
-            'views' => [
+            'rdrive-views' => [
                 "{$publishablePath}/resources/views" => resource_path('views/vendor/rdrive'),
             ],
-            'assets' => [
-                "{$publishablePath}/resources/assets" => resource_path('admin'),
+            'rdrive-assets' => [
+                "{$publishablePath}/public" => public_path('vendor/rdrive'),
             ],
-            'public' => [
-                "{$publishablePath}/public" => public_path('admin'),
-            ],
-
         ];
 
         foreach ($publishable as $group => $paths) {
@@ -66,10 +59,15 @@ class RdriveServiceProvider extends AuthServiceProvider
         }
     }
 
+    /**
+     * Register the package configs.
+     *
+     * @return void
+     */
     public function registerConfigs()
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__).'/../publishable/config/rdrive.php', 'rdrive'
+            dirname(__DIR__) . '/../config/rdrive.php', 'rdrive'
         );
     }
 
@@ -81,5 +79,36 @@ class RdriveServiceProvider extends AuthServiceProvider
         $this->commands([
             InstallCommand::class
         ]);
+    }
+
+    /**
+     * Register the package routes.
+     *
+     * @return void
+     */
+    private function registerRoutes()
+    {
+        $this->loadRoutesFrom(dirname(__DIR__) . '/../routes/web.php');
+        $this->loadRoutesFrom(dirname(__DIR__) . '/../routes/api.php');
+    }
+
+    /**
+     * Register the package migration files.
+     *
+     * @return void
+     */
+    private function registerMigrations()
+    {
+        $this->loadMigrationsFrom(dirname(__DIR__) . '/../database/migrations');
+    }
+
+    /**
+     * Register the package views.
+     *
+     * @return void
+     */
+    private function registerViews()
+    {
+        $this->loadViewsFrom(dirname(__DIR__) . '/../resources/views', 'rdrive');
     }
 }

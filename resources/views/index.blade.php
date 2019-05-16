@@ -9,10 +9,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('admin/js/app.min.js') }}" defer></script>
+    <script src="{{ asset('vendor/rdrive/js/app.min.js') }}" defer></script>
 
     <!-- Styles -->
-    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/rdrive/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

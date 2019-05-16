@@ -1,6 +1,6 @@
 <?php
 
-namespace Rocketfirm\Rdrive\Commands;
+namespace Rocketfirm\Rdrive\Console;
 
 use Illuminate\Console\Command;
 use Rocketfirm\Rdrive\Providers\RdriveServiceProvider;
@@ -38,12 +38,13 @@ class InstallCommand extends Command
     {
         $this->info('Installing...');
 
-        $this->info('Publishing the config file');
-        $this->call('vendor:publish', ['--provider' => RdriveServiceProvider::class, '--tag' => ['config', 'public'], '--force' => $this->option('force')]);
+        $this->info('Publishing the Rdrive config and assets files');
+        $this->call('vendor:publish', ['--tag' => ['rdrive-config', 'rdrive-assets'], '--force' => $this->option('force')]);
 
         /**
          * Publish config from `dimsav/laravel-translatable` package
          */
+        $this->info('Publishing the Translatable config file');
         $this->call('vendor:publish', ['--tag' => ['translatable']]);
 
         $this->info('Migrating the database tables into your application');
