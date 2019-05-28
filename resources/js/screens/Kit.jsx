@@ -1,8 +1,11 @@
 import React from 'react';
 import Layout from 'components/Layout';
+import H1 from 'components/ui/H1';
+import Button from 'components/ui/Button';
 
 export default () => (
   <Layout>
-    <h1>Kit</h1>
+    <H1>Kit</H1>
+    <Button>Button</Button>
   </Layout>
 );
