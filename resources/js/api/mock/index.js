@@ -99,3 +99,58 @@ export const getSettings = async () => {
     },
   };
 };
+
+export const getSchemasList = async () => {
+  await mockLatency();
+  return {
+    settings: {
+      name: 'settings.settings',
+      fields: [
+        {
+          key: 'group',
+          name: 'settings.group',
+          type: 'string',
+          sortable: true,
+          filterable: true,
+          editable: true,
+          showInList: true,
+          translatable: false,
+        },
+        {
+          key: 'key',
+          name: 'settings.key',
+          type: 'string',
+          sortable: true,
+          filterable: true,
+          editable: true,
+          showInList: true,
+          translatable: false,
+        },
+        {
+          key: 'name',
+          name: 'settings.name',
+          type: 'string',
+          sortable: true,
+          filterable: true,
+          editable: true,
+          showInList: true,
+          translatable: false,
+        },
+        {
+          key: 'type',
+          name: 'settings.type',
+          type: 'string',
+          sortable: true,
+          filterable: true,
+          editable: true,
+          showInList: true,
+          translatable: false,
+        },
+      ],
+      display_in_admin_sidebar: false,
+      translatable: false,
+      sortable: false,
+      creatable: true,
+    },
+  };
+};

@@ -16,7 +16,7 @@ export const fetchSettingsSuccess = payload => ({
 
 export const fetchSettings = () => async (dispatch) => {
   dispatch(fetchSettingsRequest());
-  const data = getSettings();
+  const data = await getSettings();
   dispatch(fetchSettingsSuccess(data));
 };
 

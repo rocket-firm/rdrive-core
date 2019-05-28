@@ -1,5 +1,6 @@
 import React from 'react';
+import DashboardLayoutContainer from 'containers/DashboardLayoutContainer'
 
 export default () => (
-  <h1>RDrive</h1>
+  <DashboardLayoutContainer/>
 );

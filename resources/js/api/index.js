@@ -3,4 +3,5 @@ export const {
   getLocalizationData,
   postMissedTranslations,
   getSettings,
+  getSchemasList,
 } = require('./mock');

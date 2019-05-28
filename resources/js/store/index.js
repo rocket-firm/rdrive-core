@@ -10,10 +10,12 @@ import {
 import { types as rootTypes, putValue } from './root';
 import localizations from './localizations';
 import settings from './settings';
+import schemas from './schemas';
 
 const reducers = combineReducers({
   localizations,
   settings,
+  schemas,
 });
 
 const rootReducer = (state, action) => {
