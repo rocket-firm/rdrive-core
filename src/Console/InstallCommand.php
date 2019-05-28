@@ -25,7 +25,8 @@ class InstallCommand extends Command
     protected function getOptions()
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when in production', null]
+            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when in production', null],
+            ['with-dummy', null, InputOption::VALUE_NONE, 'Install with dummy data', null],
         ];
     }
 
@@ -40,6 +41,21 @@ class InstallCommand extends Command
 
         $this->info('Publishing the Rdrive config and assets files');
         $this->call('vendor:publish', ['--tag' => ['rdrive-config', 'rdrive-assets'], '--force' => $this->option('force')]);
+
+        if ($this->option('with-dummy')) {
+            $this->info('Publishing dummy content');
+            $this->call('vendor:publish', [
+                '--tag' => [
+                    'rdrive-dummy-seeds',
+                    'rdrive-dummy-migrations',
+                    'rdrive-dummy-models'
+                ],
+                '--force' => $this->option('force')
+            ]);
+
+//            $this->info('Seeding dummy data');
+//            $this->seed('VoyagerDummyDatabaseSeeder');
+        }
 
         /**
          * Publish config from `dimsav/laravel-translatable` package

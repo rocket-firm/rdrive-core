@@ -52,6 +52,16 @@ class RdriveServiceProvider extends AuthServiceProvider
             'rdrive-assets' => [
                 "{$publishablePath}/public" => public_path('vendor/rdrive'),
             ],
+            'rdrive-dummy-seeds' => [
+                "{$publishablePath}/dummy/database/seeds" => database_path('seeds'),
+                "{$publishablePath}/dummy/database/factories" => database_path('factories'),
+            ],
+            'rdrive-dummy-migrations' => [
+                "{$publishablePath}/dummy/database/migrations" => database_path('migrations'),
+            ],
+            'rdrive-dummy-models' => [
+                "{$publishablePath}/dummy/app/Models" => app_path('Models'),
+            ],
         ];
 
         foreach ($publishable as $group => $paths) {
@@ -64,7 +74,7 @@ class RdriveServiceProvider extends AuthServiceProvider
      *
      * @return void
      */
-    public function registerConfigs()
+    private function registerConfigs()
     {
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/../config/rdrive.php', 'rdrive'
