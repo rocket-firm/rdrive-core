@@ -48,7 +48,7 @@ export const getLocalizationData = async () => {
         saving: 'Сохраняется',
         tenge: 'тенге',
         logout: 'logout',
-      }
+      },
     },
     kk: {
       common: {
@@ -63,7 +63,7 @@ export const getLocalizationData = async () => {
         saving: 'Сақталды',
         tenge: 'тенге',
         logout: 'logout',
-      }
+      },
     },
   };
 };
