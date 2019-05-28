@@ -11,9 +11,7 @@ class DashboardLayoutContainer extends Component {
     fetchSchemasList();
   }
   render() {
-    return (
-      <h1>DashboardLayoutContainer</h1>
-    );
+    return this.props.children;
   }
 }
 
