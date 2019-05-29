@@ -58,5 +58,19 @@ class InstallCommand extends Command
 
         $this->info('Migrating the database tables into your application');
         $this->call('migrate', ['--force' => $this->option('force')]);
+
+        $this->setLocales();
+    }
+
+    /**
+     * Set application locales
+     */
+    private function setLocales()
+    {
+        $defaultLocales = ['en', 'ru', 'kk'];
+        $currentLocales = \Config::get('translatable.locales');
+        if ($defaultLocales !== $currentLocales) {
+            \Config::write('translatable.locales', $defaultLocales);
+        }
     }
 }
