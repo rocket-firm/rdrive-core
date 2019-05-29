@@ -44,14 +44,7 @@ class InstallCommand extends Command
 
         if ($this->option('with-dummy')) {
             $this->info('Publishing dummy content');
-            $this->call('vendor:publish', [
-                '--tag' => [
-                    'rdrive-dummy-seeds',
-                    'rdrive-dummy-migrations',
-                    'rdrive-dummy-models'
-                ],
-                '--force' => $this->option('force')
-            ]);
+            $this->call('vendor:publish', ['--tag' => ['rdrive-dummy'], '--force' => $this->option('force')]);
 
 //            $this->info('Seeding dummy data');
 //            $this->seed('VoyagerDummyDatabaseSeeder');
