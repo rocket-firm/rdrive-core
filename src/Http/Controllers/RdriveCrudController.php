@@ -24,10 +24,6 @@ class RdriveCrudController extends Controller
      */
     public function __construct()
     {
-        if (!app()->isLocal()) {
-            $this->middleware('client');
-        }
-
         $this->middleware('auth:api')->only(['store', 'update', 'destroy', 'toggle', 'move']);
     }
 
