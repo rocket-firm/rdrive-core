@@ -2,9 +2,9 @@
 
 namespace Rocketfirm\Rdrive\Http\Resources;
 
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\Resource;
-use Rocketfirm\Rdrive\Traits\Translatable;
 
 class SchemaResource extends Resource
 {

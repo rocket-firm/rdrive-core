@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
+
     <!-- Scripts -->
-    <script src="{{ asset('js/admin/index.js') }}" defer></script>
+    <script src="{{ asset('vendor/rdrive/js/app.min.js') }}" defer></script>
+
+    <!-- Styles -->
+    <link href="{{ asset('vendor/rdrive/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <h1>Test</h1>
     <div id="app">
     </div>
 </body>

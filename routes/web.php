@@ -1,5 +1,8 @@
 <?php
 
-Route::get('/admin/{path?}', function () {
-    return view('rdrive::admin');
-})->where('path', '([A-z\d-\/_.]+)?')->middleware('web');
+$namespace = '\Rocketfirm\Rdrive\Http\Controllers';
+
+Route::group(['namespace' => $namespace, 'middleware' => 'web'], function () {
+    Route::get('/admin/{path?}', 'RdriveBaseController@index')
+        ->where('path', '([A-z\d-\/_.]+)?');
+});

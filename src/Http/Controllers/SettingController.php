@@ -7,7 +7,7 @@ use App\Http\Resources\SettingResource;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
-class SettingController extends TranslatableController
+class SettingController extends RdriveCrudController
 {
     protected $modelClass = Setting::class;
     protected $modelResourceClass = SettingResource::class;
