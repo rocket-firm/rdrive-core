@@ -21,6 +21,8 @@ To install Rdrive without dummy data simply run:
 php artisan rdrive:install
 ```
 
+---
+
 If you prefer installing it with the dummy data run the following commands:
 ```shell
 php artisan rdrive:install --with-dummy
@@ -29,6 +31,11 @@ composer dump-autoload
 
 php artisan db:seed --class=RdriveDummyDatabaseSeeder
 ```
+Then add these dummy routes in your `api.php` file:
+```php
+Route::apiResources(['countries' => 'API\CountryController']);
+```
+
 
 And we're all good to go!  
 Start up a local development server with php artisan serve And, visit the URL http://localhost:8000/admin in your browser.  
