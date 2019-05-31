@@ -25,7 +25,7 @@ const H1 = ({
 }) => {
  
   return (
-    <H1UI > {children} </H1UI>
+    <H1UI custom={custom}> {children} </H1UI>
   );
 };
 
