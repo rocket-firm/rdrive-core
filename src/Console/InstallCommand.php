@@ -46,8 +46,7 @@ class InstallCommand extends Command
             $this->info('Publishing dummy content');
             $this->call('vendor:publish', ['--tag' => ['rdrive-dummy'], '--force' => $this->option('force')]);
 
-//            $this->info('Seeding dummy data');
-//            $this->seed('VoyagerDummyDatabaseSeeder');
+            $this->setDummyConfigs();
         }
 
         /**
@@ -58,5 +57,35 @@ class InstallCommand extends Command
 
         $this->info('Migrating the database tables into your application');
         $this->call('migrate', ['--force' => $this->option('force')]);
+
+        $this->setLocales();
+    }
+
+    /**
+     * Set application locales
+     */
+    private function setLocales()
+    {
+        $defaultLocales = ['en', 'ru', 'kk'];
+        $currentLocales = \Config::get('translatable.locales');
+        if ($defaultLocales !== $currentLocales) {
+            \Config::write('translatable.locales', $defaultLocales);
+        }
+    }
+
+    /**
+     * Set dummy configs
+     */
+    private function setDummyConfigs()
+    {
+        $dummySchemas = [
+            \App\Models\Country::class
+        ];
+
+        $currentSchemas = \Config::get('rdrive.schemas');
+
+        $schemas = array_unique(array_merge($currentSchemas, $dummySchemas));
+
+        \Config::write('rdrive.schemas', $schemas);
     }
 }
