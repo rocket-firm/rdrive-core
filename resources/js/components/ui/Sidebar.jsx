@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import styled,{ css } from "styled-components";
 import Button from "./Button"
 import H1 from "./H1"
+import { string } from "postcss-selector-parser";
 const SidebarUI = styled.nav`
   color: #3d4671;
   border-right: 1px solid #dbeaf4;
@@ -35,7 +36,6 @@ const SidibarLinkList = styled.ul`
   overflow-y: auto
 `
 const SidebarListItem=styled.li`
-
   min-height: 27px;
   a{
     display: flex;
@@ -48,16 +48,10 @@ const SidebarListItem=styled.li`
     &:hover{
       background-color: #EDF4F8;
     }
-    &:before {
-      font-family: 'Icons';
-      content:'\0055';
-      margin-right: 10px;
-      font-size: 6px;
-    }
   }
-    
+ 
 `
-const Sidebar = ({ title, children, ...attrs }) => {
+const Sidebar = ({ title, children, data, ...attrs }) => {
   return (
     <SidebarUI>
       <H1>teawteae</H1>
@@ -73,8 +67,28 @@ const Sidebar = ({ title, children, ...attrs }) => {
         </button>
       </div>
       <SidibarLinkList>
-  <SidebarListItem><a href="res">Болasdьшая работа</a></SidebarListItem>
+      {data.map((item,idx)=>{
+        const {name, data} = item
+        // return (
+        //   <SidebarListItem key={idx}><a href="res">{name}</a></SidebarListItem>
+        // )
+      return typeof data === "string" ? 
+      <SidebarListItem key={idx}><a href="res">{name}</a></SidebarListItem>:
+      <span key={idx}>
+      <SidebarListItem ><a href="res">{name}</a></SidebarListItem>
+      <ul>
+        {data.map((sub,ids)=>{
+          return (
+            <SidebarListItem key={ids}><a href="res">{sub.name}</a></SidebarListItem>
+          )
+        })}
+      </ul>
+      </span>
+      })}
 
+
+  
+{/* 
         <li className="sidebar__links-list__item">
           <a href="#">Болasdьшая работа</a>
         </li>
@@ -91,39 +105,10 @@ const Sidebar = ({ title, children, ...attrs }) => {
               <a href="#">Клиенты</a>
             </li>
           </ul>
-        </li>
-        <li className="sidebar__links-list__item">
-          <a href="#">Закрытый пункт</a>
-          <ul>
-            <li className="sidebar__links-list__item">
-              <a href="#">Категории</a>
-            </li>
-            <li className="sidebar__links-list__item">
-              <a href="#">Наборы</a>
-            </li>
-            <li className="sidebar__links-list__item">
-              <a href="#">Клиенты</a>
-            </li>
-          </ul>
-        </li>
-        <li className="sidebar__links-list__item">
-          <a href="#">
-            Пункт с очень очень длинным названием (так пожелал клиент)
-          </a>
-        </li>
-        {[...Array(5).keys()].map((item, key) => (
-          <Fragment key={key}>
-            <li className="sidebar__links-list__item">
-              <a href="#">Отделы</a>
-            </li>
-            <li className="sidebar__links-list__item">
-              <a href="#">Контакты</a>
-            </li>
-            <li className="sidebar__links-list__item">
-              <a href="#">Вакансии и резюме</a>
-            </li>
-          </Fragment>
-        ))}
+        </li> */}
+
+
+  
     </SidibarLinkList> 
       <div className="sidebar__footer">
         <button type="button" className="btn btn-plain">
@@ -147,3 +132,51 @@ const Sidebar = ({ title, children, ...attrs }) => {
   );
 };
 export default Sidebar;
+
+// &:a {
+//   display: flex;
+//   align-items: center;
+//   height: 100%;
+//   color: #737A9B;
+//   background-color: transparent;
+//   padding-left: 58px;
+//   &:hover {
+//     background-color: #EDF4F8;
+//     text-decoration: none;
+//   }
+//   &:before {
+//     font-family: 'Icons';
+//     content:'\0055';
+//     margin-right: 10px;
+//     font-size: 6px;
+//   }
+// }
+// &:ul {
+//   display: none;
+//   padding-left: 0;
+//   list-style: none;
+//   .sidebar__links-list__item {
+//     a {
+//       padding-left: 78px;
+//       &:before {
+//         content: '•';
+//         margin-right: 10px;
+//         font-size: 10px;
+//       }
+//     }
+//   }
+// }
+// ${props => props.opened && css`
+//   ul {
+//     display: block;
+//   }
+//   & > a {
+//     color: #ffffff;
+//     background-color: $color-primary;
+//     &:hover {
+//       color: #ffffff;
+//       background-color: $color-primary;
+//     }
+//   }
+// `
+// }
