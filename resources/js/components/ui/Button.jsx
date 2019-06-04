@@ -1,13 +1,13 @@
 
 import React from 'react';
-
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 
 const ButtonUI =  styled.button`
   cursor: pointer;
   color: #ffffff;
-  background-color: #177FF2;
+  background-color:${props => (props.color  ? props.color : '#177FF2')};
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -26,48 +26,23 @@ const ButtonUI =  styled.button`
     
 `
 
-const LinkUI = styled.a`
+const LinkUI = styled(Link)`
 padding: 0;
   line-height: 1;
-  color: $color-primary;
+  text-decoration:none;
   font-size: 12px;
   position: relative;
   padding-left: 14px;
-  text-decoration: underline;
-  text-decoration-color: rgba(115, 122, 155, .3);
-  transition: .3s;
-  &:before {
-    content: '';
-    background-image: url('/static/images/icon-link.svg');
-    background-repeat: no-repeat;
-    position: absolute;
-    height: 12px;
-    width: 12px;
-    left: 0;
-    top: 0;
-  }
-
-  &:hover {
-    color: $color-highlight;
-    text-decoration-color: rgba( 23, 127, 242, .3);
-    &:before {
-      background-image: url('/static/images/icon-link--blue.svg');
-    }
-  }
+  color:${props => (props.color  ? props.color : "#d1d1d1")};
 
 `
 
 const Button = ({
-  children, ...attrs
+  children, color, ...attrs 
 }) => {
-  const Tag = attrs.href ? <LinkUI>{children}</LinkUI> : <ButtonUI>{children}</ButtonUI>;
-  return (
-    <Tag
 
-      {...attrs}
-    >
-      {children}
-    </Tag>
+  return (
+    attrs.link? <LinkUI to={attrs.link}>{children}</LinkUI>: <ButtonUI color={color}>{children}</ButtonUI>
   );
 };
 

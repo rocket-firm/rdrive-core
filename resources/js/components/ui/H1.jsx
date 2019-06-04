@@ -13,7 +13,7 @@ import styled from 'styled-components'
 
 
 const H1UI =  styled.h1`
-  color: ${props => (props.custom  ? props.custom : '#3D4671')};
+  color: ${props => (props.color  ? props.color : '#3D4671')};
   
    font-weight: bold;
    font-size: 24px;
@@ -21,11 +21,11 @@ const H1UI =  styled.h1`
 `
 
 const H1 = ({
-   custom , children
+   color , children
 }) => {
  
   return (
-    <H1UI custom={custom}> {children} </H1UI>
+    <H1UI color={color}> {children} </H1UI>
   );
 };
 

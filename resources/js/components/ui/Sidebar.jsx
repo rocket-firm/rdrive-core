@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
-import styled from "styled-components";
+import styled,{ css } from "styled-components";
+import Button from "./Button"
+import H1 from "./H1"
 const SidebarUI = styled.nav`
   color: #3d4671;
   border-right: 1px solid #dbeaf4;
@@ -9,7 +11,7 @@ const BrandUI = styled.div`
   align-items: center;
   height: 50px;
   padding-left: 50px;
-  border-bottom: 1px solid $color-grey;
+  border-bottom: 1px solid #DBEAF4;
   &:figure {
     display: flex;
     align-items: center;
@@ -29,22 +31,22 @@ const SidibarLinkList = styled.ul`
   padding-left: 0;
   list-style: none;
   height: 500px;
-  border-bottom: 1px solid $color-grey;
+  border-bottom: 1px solid #DBEAF4;
   overflow-y: auto
 `
 const SidebarListItem=styled.li`
 
   min-height: 27px;
-  &:a {
+  a{
     display: flex;
     align-items: center;
     height: 100%;
-    color: $color-primary;
+    color: #737A9B;
     background-color: transparent;
     padding-left: 58px;
-    &:hover {
-      background-color: $color-grey-hover;
-      text-decoration: none;
+    text-decoration: none;
+    &:hover{
+      background-color: #EDF4F8;
     }
     &:before {
       font-family: 'Icons';
@@ -53,40 +55,12 @@ const SidebarListItem=styled.li`
       font-size: 6px;
     }
   }
-  &:ul {
-    display: none;
-    padding-left: 0;
-    list-style: none;
-    .sidebar__links-list__item {
-      a {
-        padding-left: 78px;
-        &:before {
-          content: '•';
-          margin-right: 10px;
-          font-size: 10px;
-        }
-      }
-    }
-  }
-  &_opened {
-    ul {
-      display: block;
-    }
-    & > a {
-      color: #ffffff;
-      background-color: $color-primary;
-      &:hover {
-        color: #ffffff;
-        background-color: $color-primary;
-      }
-    }
-  }
-
-
+    
 `
 const Sidebar = ({ title, children, ...attrs }) => {
   return (
     <SidebarUI>
+      <H1>teawteae</H1>
       <BrandUI>
         <figure>
           <img src="/static/images/brand-logo.png" alt="Brand name" />
@@ -95,12 +69,14 @@ const Sidebar = ({ title, children, ...attrs }) => {
       </BrandUI>
       <div className="sidebar__main-link">
         <button type="button" className="btn btn-link">
-          Перейти на сайт
+          Перейти на asdaсайт
         </button>
       </div>
       <SidibarLinkList>
+  <SidebarListItem><a href="res">Болasdьшая работа</a></SidebarListItem>
+
         <li className="sidebar__links-list__item">
-          <a href="#">Большая работа</a>
+          <a href="#">Болasdьшая работа</a>
         </li>
         <li className="sidebar__links-list__item sidebar__links-list__item_opened">
           <a href="#">Открытый пункт</a>

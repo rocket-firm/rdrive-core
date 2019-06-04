@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 const InputUI =  styled.input`
 
-    width:100%
+    width:100%;
     box-sizing: border-box;  
     height: 35px;
     border-radius: 2px;
@@ -16,6 +16,7 @@ const InputUI =  styled.input`
     font-size: 15px;
     color: #3D4671;
     line-height: normal;
+    
     min-width: 220px;
     outline:none;
 `

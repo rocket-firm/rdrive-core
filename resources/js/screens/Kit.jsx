@@ -4,45 +4,15 @@ import H1 from 'components/ui/H1';
 import Button from 'components/ui/Button';
 import Input from 'components/ui/Input'
 import Sidebar from 'components/ui/Sidebar' 
+import links from "../mockup/links"
 
-const SideBarLinks=[
-  {
-    name:'Большая работа',
-    link:"/"
-  },
-  {
-    name:'Большая работа',
-    link:"/"
-  },
-  {
-    name:'Большая работа',
-    link:"/",
-    sublink:[
-      {
-        name:'Большая работа',
-        link:"/"
-      },
-      {
-        name:'Большая работа',
-        link:"/"
-      },
-    ]
-  },
-  {
-    name:'Большая работа',
-    link:"/"
-  },
-  {
-    name:'Большая работа',
-    link:"/"
-  },
-]
 export default () => (
   
-  <Layout>
-    <H1 custom ='red'>Kit</H1>
-    <Button>Button</Button>
+  <Layout vertical>
+    <H1 color="red">Kitdasfaa</H1>
+    <Button link="/test" ></Button>
     <Input />
-    <Sidebar title='Kazkommerts Securities' data={SideBarLinks}/>
+    {/* {console.log(Links)} */}
+    <Sidebar title='Kazkommerts Securities'  data={links}/>
   </Layout>
 );
