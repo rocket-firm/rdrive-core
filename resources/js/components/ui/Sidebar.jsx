@@ -27,17 +27,26 @@ const BrandUI = styled.div`
   }
 `;
 
-const SidibarLinkList = styled.ul`
+const SidebarLinkList = styled.ul`
   padding-top: 15px;
   padding-left: 0;
   list-style: none;
   height: 500px;
   border-bottom: 1px solid #DBEAF4;
   overflow-y: auto
+  ${({ sub }) => sub && `
+    padding-top: 15px;
+    padding-left: 30px;
+    list-style: none;
+    height: auto;
+    border-bottom: none;
+    overflow-y: auto
+  `}
 `
+
 const SidebarListItem=styled.li`
   min-height: 27px;
-  a{
+  &${Button} {
     display: flex;
     align-items: center;
     height: 100%;
@@ -49,12 +58,30 @@ const SidebarListItem=styled.li`
       background-color: #EDF4F8;
     }
   }
- 
+  &${SidebarLinkList}:{
+    display:none;
+  }
+
+  ${({ opened }) => opened && `
+  ul {
+    display: block;
+  }
+  & > a {
+    color: #ffffff;
+    background-color: #737A9B;
+    &:hover {
+      color: #ffffff;
+      background-color: #737A9B;
+    }
+  }
+`}
+
 `
-const Sidebar = ({ title, children, data, ...attrs }) => {
+const Sidebar = ({ title, children, data, opened,...attrs }) => {
   return (
     <SidebarUI>
       <H1>teawteae</H1>
+      
       <BrandUI>
         <figure>
           <img src="/static/images/brand-logo.png" alt="Brand name" />
@@ -66,50 +93,27 @@ const Sidebar = ({ title, children, data, ...attrs }) => {
           Перейти на asdaсайт
         </button>
       </div>
-      <SidibarLinkList>
+      <SidebarLinkList>
       {data.map((item,idx)=>{
         const {name, data} = item
-        // return (
-        //   <SidebarListItem key={idx}><a href="res">{name}</a></SidebarListItem>
-        // )
+
       return typeof data === "string" ? 
-      <SidebarListItem key={idx}><a href="res">{name}</a></SidebarListItem>:
-      <span key={idx}>
-      <SidebarListItem ><a href="res">{name}</a></SidebarListItem>
-      <ul>
-        {data.map((sub,ids)=>{
-          return (
-            <SidebarListItem key={ids}><a href="res">{sub.name}</a></SidebarListItem>
-          )
-        })}
-      </ul>
-      </span>
+      <SidebarListItem key={idx}><Button link="asd">{name}</Button></SidebarListItem>:
+      <Fragment key={idx}>
+        <SidebarListItem opened><a href="">{name}</a>
+          <SidebarLinkList sub>
+            {data.map((sub,ids)=>{
+              return (
+                <SidebarListItem  key={ids}><a href="res">{sub.name}</a></SidebarListItem>
+              )
+            })}
+          </SidebarLinkList>
+        </SidebarListItem>
+      </Fragment>
       })}
 
 
-  
-{/* 
-        <li className="sidebar__links-list__item">
-          <a href="#">Болasdьшая работа</a>
-        </li>
-        <li className="sidebar__links-list__item sidebar__links-list__item_opened">
-          <a href="#">Открытый пункт</a>
-          <ul>
-            <li className="sidebar__links-list__item">
-              <a href="#">Категории</a>
-            </li>
-            <li className="sidebar__links-list__item">
-              <a href="#">Наборы</a>
-            </li>
-            <li className="sidebar__links-list__item">
-              <a href="#">Клиенты</a>
-            </li>
-          </ul>
-        </li> */}
-
-
-  
-    </SidibarLinkList> 
+    </SidebarLinkList> 
       <div className="sidebar__footer">
         <button type="button" className="btn btn-plain">
           <i className="icon-delete" /> Корзина

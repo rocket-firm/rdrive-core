@@ -10,9 +10,9 @@ export default () => (
   
   <Layout vertical>
     <H1 color="red">Kitdasfaa</H1>
-    <Button link="/test" ></Button>
+    <Button link="/test" >asdasd</Button>
     <Input />
     {/* {console.log(Links)} */}
-    <Sidebar title='Kazkommerts Securities'  data={links}/>
+    <Sidebar title='Kazkommerts Securities'  data={links} />
   </Layout>
 );

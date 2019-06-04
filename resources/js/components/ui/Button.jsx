@@ -38,11 +38,11 @@ padding: 0;
 `
 
 const Button = ({
-  children, color, ...attrs 
+  children, color, link, ...attrs 
 }) => {
 
   return (
-    attrs.link? <LinkUI to={attrs.link}>{children}</LinkUI>: <ButtonUI color={color}>{children}</ButtonUI>
+    link? <LinkUI to={link}>{children}</LinkUI>: <ButtonUI color={color}>{children}</ButtonUI>
   );
 };
 
