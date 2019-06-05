@@ -10,12 +10,11 @@ const CheckboxContainer = styled.div`
 
 const Icon = styled.svg`
   fill: none;
-  stroke: red;
+  stroke: #177ff0;
   stroke-width: 2px;
 `
 
 const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
-outline:none
   border: 0;
   clip: rect(0 0 0 0);
   clippath: inset(50%);
@@ -29,26 +28,28 @@ outline:none
 `
 
 const StyledCheckbox = styled.div`
-outline:none
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: ${props => (props.checked ? 'salmon' : 'papayawhip')}
-  border-radius: 3px;
-  transition: all 150ms;
-  border:1px solid red;
 
-  ${HiddenCheckbox}:focus + & {
-    box-shadow: 0 0 0 3px pink;
-  }
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: ${props => (props.checked ? 'salmon' : 'papayawhip')}
+    border-radius: 3px;
+    transition: all 150ms;
+    border-radius: 1px;
+    border: 1px solid #DBEAF4;
+    background-color: transparent;
+    :hover{
+        border-color:#4DA1FF
+    }
+  
 
   ${Icon} {
     visibility: ${props => (props.checked ? 'visible' : 'hidden')}
   }
 `
 
-const Checkbox = ({ className, checked, ...props }) => (
-  <CheckboxContainer className={className}>
+const Checkbox = ({  checked, ...props }) => (
+  <CheckboxContainer >
     <HiddenCheckbox checked={checked} {...props} />
     <StyledCheckbox checked={checked}>
       <Icon viewBox="0 0 24 24" >

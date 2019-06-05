@@ -8,50 +8,28 @@ import links from "../mockup/links"
 import Checkbox from "components/ui/Checkbox"
 
 
-class Kit extends React.Component {
-  state = { checked: false }
 
-  handleCheckboxChange = event => {
-    this.setState({ checked: event.target.checked })
-  }
+const Kit = () => {
+  const [count, setCount] = useState(false)
 
-  render() {
-    return (
-      <div style={{ fontFamily: 'system-ui' }}>
-        <label>
-          <Checkbox
-            checked={this.state.checked}
-            onChange={this.handleCheckboxChange}
-          />
-          <span style={{ marginLeft: 8 }}>Label Text</span>
-        </label>
-      </div>
-    )
-  }
-}
-// const Kit = () => {
-//   const [count, setCount] = useState("visible")
-//   const handleCheckboxChange = event => {
-//     setCount(event.target.checked)
-//   }
-//  return (
-//    <Layout vertical>
-//     <H1 color="red">Kitdasfaaaaa</H1>
-//     <Button link="/test" >asdasddddd</Button>
-//     <Input />
-//     <label>
-//       <Checkbox
-//         checked={count}
-//         onChange={handleCheckboxChange}
-//       />
-//       <span style={{ marginLeft: 8 }}>Label Text</span>
-//     </label>
-//     <Sidebar title='Kazkommerts Securities'  data={links} />
+ return (
+   <Layout vertical>
+    <H1 color="red">Kitdasfaaaaa</H1>
+    <Button link="/test" >asdasddddd</Button>
+    <Input />
+    <label>
+      <Checkbox
+        checked={count}
+        onChange={()=>setCount(event.target.checked)}
+      />
+      <span style={{ marginLeft: 8 }}>Label Text</span>
+    </label>
+    <Sidebar title='Kazkommerts Securities'  data={links} />
     
-//   </Layout>
+  </Layout>
      
    
-//  );
-// };
+ );
+};
 
 export default Kit
