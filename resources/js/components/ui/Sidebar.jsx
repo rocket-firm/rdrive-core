@@ -58,6 +58,14 @@ const LinkUI=styled(Link)`
       
     }
 `
+
+const SidebarMainLinkUI=styled.div`
+    display: flex;
+    align-items: center;
+    padding-left: 58px;
+    height: 30px;
+    border-bottom: 1px solid #DBEAF4;
+`
 const SidebarListItemUI=styled.li`
   min-height: 27px;
 
@@ -85,18 +93,20 @@ const SidebarListItemUI=styled.li`
 const Sidebar = ({ title, children, data, opened,...attrs }) => {
   return (
     <SidebarUI>
-      <H1>teawteaesssd</H1>
+      <H1 bold>{title}</H1>
       <BrandUI>
         <figure>
           <img src={require('../../mockup/images/brand-logo.png')} alt="Brand name" />
           <h3>{title}</h3>
         </figure>
       </BrandUI>
-      <div className="sidebar__main-link">
-        <button type="button" className="btn btn-link">
-          Перейти на asdaсайт
-        </button>
-      </div>
+      <SidebarMainLinkUI>
+        <Button link='#'>Перейти на asdaсайт</Button>
+      {/* <button type="button" className="btn btn-link">
+          
+        </button> */}
+        </SidebarMainLinkUI>
+      
       <SidebarLinkListUI>
       {data.map((item,idx)=>{
         const {name, data} = item
@@ -140,50 +150,3 @@ const Sidebar = ({ title, children, data, opened,...attrs }) => {
 };
 export default Sidebar;
 
-// &:a {
-//   display: flex;
-//   align-items: center;
-//   height: 100%;
-//   color: #737A9B;
-//   background-color: transparent;
-//   padding-left: 58px;
-//   &:hover {
-//     background-color: #EDF4F8;
-//     text-decoration: none;
-//   }
-//   &:before {
-//     font-family: 'Icons';
-//     content:'\0055';
-//     margin-right: 10px;
-//     font-size: 6px;
-//   }
-// }
-// &:ul {
-//   display: none;
-//   padding-left: 0;
-//   list-style: none;
-//   .sidebar__links-list__item {
-//     a {
-//       padding-left: 78px;
-//       &:before {
-//         content: '•';
-//         margin-right: 10px;
-//         font-size: 10px;
-//       }
-//     }
-//   }
-// }
-// ${props => props.opened && css`
-//   ul {
-//     display: block;
-//   }
-//   & > a {
-//     color: #ffffff;
-//     background-color: $color-primary;
-//     &:hover {
-//       color: #ffffff;
-//       background-color: $color-primary;
-//     }
-//   }
-// `
-// }

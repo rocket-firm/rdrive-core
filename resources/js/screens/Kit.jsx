@@ -25,7 +25,8 @@ const Kit = () => {
       <span style={{ marginLeft: 8 }}>Label Text</span>
     </label>
     <Switch/>
-    <Sidebar title='Kazkommerts Securities'  data={links} />
+    <h3>Kazkommerts Securities</h3>
+    <Sidebar title='Kazkommerts Securities'  data={links} title="Kazkommerts Securities"/>
     
   </Layout>
      

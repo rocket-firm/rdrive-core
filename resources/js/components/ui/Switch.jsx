@@ -8,22 +8,6 @@ const SwitchInputUI = styled.input.attrs({ type: 'checkbox' })`
     height: 0;
     
 `
-const SwitchUI =styled.label`
-    position: relative;
-    display: inline-block;
-    width: 22px;
-    height: 12px;
-    margin-bottom: 0;
-    vertical-align: middle;
-    ${SwitchInputUI}:checked + ${SwitchSliderUI}{
-        background-color: #737A9B; 
-    }
-     ${SwitchInputUI}:checked + ${SwitchSliderUI}:before{
-        transform: translateX(10px);
-    }
-   
-`
-
 const SwitchSliderUI= styled.span`
     position: absolute;
     cursor: pointer;
@@ -49,9 +33,26 @@ const SwitchSliderUI= styled.span`
     
 `
 
-const Switch = ({
-  toggle,IsToggled, ...attrs
-}) => {
+const SwitchUI =styled.label`
+    position: relative;
+    display: inline-block;
+    width: 22px;
+    height: 12px;
+    margin-bottom: 0;
+    vertical-align: middle;
+    ${SwitchInputUI}:checked + ${SwitchSliderUI}{ 
+        background-color: #737A9B; 
+    }
+    
+    ${SwitchInputUI}:checked + ${SwitchSliderUI}:before{
+        transform: translateX(10px);
+    }
+   
+`
+
+
+
+const Switch = () => {
 
   return (
       <SwitchUI> 
