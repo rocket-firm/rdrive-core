@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from 'components/Layout';
-import H1 from 'components/ui/H1';
+import H from 'components/ui/H1';
 import Button from 'components/ui/Button';
 import Input from 'components/ui/Input'
 import Sidebar from 'components/ui/Sidebar' 
@@ -14,7 +14,7 @@ const Kit = () => {
 
  return (
    <Layout vertical>
-    <H1 color="red">Kitdasfaaaaa</H1>
+    <H  size="2" color="#d1d1d1">Kitdasfaaaaa</H>
     <Button link="/test" >asdasddddd</Button>
     <Input />
     <label>
