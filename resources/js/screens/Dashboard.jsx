@@ -1,6 +1,6 @@
 import React from 'react';
-import DashboardLayoutContainer from 'containers/DashboardLayoutContainer'
-import Layout from 'components/Layout'
+import DashboardLayoutContainer from 'containers/DashboardLayoutContainer';
+import Layout from 'components/Layout';
 
 export default () => (
   <DashboardLayoutContainer>

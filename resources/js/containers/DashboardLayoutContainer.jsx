@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSettings } from 'store/settings';
@@ -6,10 +6,11 @@ import { fetchSchemasList } from 'store/schemas';
 
 class DashboardLayoutContainer extends Component {
   componentDidMount() {
-    const { fetchSettings, fetchSchemasList } = this.props
+    const { fetchSettings, fetchSchemasList } = this.props;
     fetchSettings();
     fetchSchemasList();
   }
+
   render() {
     return this.props.children;
   }
@@ -17,12 +18,12 @@ class DashboardLayoutContainer extends Component {
 
 export default connect(
   ({
-    settings
+    settings,
   }) => ({
-    settings
-  }), 
-  (dispatch) => bindActionCreators({
+    settings,
+  }),
+  dispatch => bindActionCreators({
     fetchSettings,
-    fetchSchemasList
-  }, dispatch)
+    fetchSchemasList,
+  }, dispatch),
 )(DashboardLayoutContainer);

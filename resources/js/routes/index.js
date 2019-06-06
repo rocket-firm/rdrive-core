@@ -6,6 +6,7 @@ import { history } from 'services';
 import Dashboard from 'screens/Dashboard';
 import Kit from 'screens/Kit';
 
+
 export default () => (
   <Router history={history}>
     <Switch>

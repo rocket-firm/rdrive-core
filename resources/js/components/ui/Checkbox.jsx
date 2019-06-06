@@ -1,18 +1,17 @@
 import React from 'react';
 
-import styled from 'styled-components'
-
+import styled from 'styled-components';
 
 const CheckboxContainer = styled.div`
   display: inline-block;
   vertical-align: middle;
-`
+`;
 
 const Icon = styled.svg`
   fill: none;
   stroke: #177ff0;
   stroke-width: 2px;
-`
+`;
 
 const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   border: 0;
@@ -25,7 +24,7 @@ const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
   position: absolute;
   white-space: nowrap;
   width: 1px;
-`
+`;
 
 const StyledCheckbox = styled.div`
 
@@ -45,18 +44,17 @@ const StyledCheckbox = styled.div`
   ${Icon} {
     visibility: ${props => (props.checked ? 'visible' : 'hidden')}
   }
-`
+`;
 
-const Checkbox = ({  checked, ...attrs }) => (
-  <CheckboxContainer >
+const Checkbox = ({ checked, ...attrs }) => (
+  <CheckboxContainer>
     <HiddenCheckbox checked={checked} {...attrs} />
     <StyledCheckbox checked={checked}>
-      <Icon viewBox="0 0 24 24" >
+      <Icon viewBox="0 0 24 24">
         <polyline points="20 6 9 17 4 12" />
       </Icon>
     </StyledCheckbox>
   </CheckboxContainer>
-)
-
+);
 
 export default Checkbox;
