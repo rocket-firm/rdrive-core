@@ -16,26 +16,34 @@ DB_PASSWORD=
 
 Finally, we can install Rdrive. You can choose to install Rdrive with dummy data or without the dummy data. The dummy data will include 1 admin account (if no users already exist), 1 demo page, 4 demo posts, 2 categories and 7 settings.  
 
-To install Rdrive without dummy data simply run:
+<details>
+  <summary>Install without dummy data</summary>
+  
 ```shell
 php artisan rdrive:install
+  
+php artisan migrate
 ```
+</details>
 
----
-
-If you prefer installing it with the dummy data run the following commands:
+<details>
+  <summary>Install with dummy data</summary>
+  
 ```shell
 php artisan rdrive:install --with-dummy
+
+php artisan migrate
 
 composer dump-autoload
 
 php artisan db:seed --class=RdriveDummyDatabaseSeeder
 ```
+
 Then add these dummy routes in your `api.php` file:
 ```php
 Route::apiResources(['countries' => 'API\CountryController']);
 ```
-
+</details>
 
 And we're all good to go!  
 Start up a local development server with php artisan serve And, visit the URL http://localhost:8000/admin in your browser.  

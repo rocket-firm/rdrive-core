@@ -55,9 +55,6 @@ class InstallCommand extends Command
         $this->info('Publishing the Translatable config file');
         $this->call('vendor:publish', ['--tag' => ['translatable']]);
 
-        $this->info('Migrating the database tables into your application');
-        $this->call('migrate', ['--force' => $this->option('force')]);
-
         $this->setLocales();
     }
 
