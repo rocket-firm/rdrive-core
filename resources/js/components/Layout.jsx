@@ -6,11 +6,12 @@ const DivUI = styled.div`
   flex-flow: ${props => (props.vertical ? 'column' : 'row')};
   width: ${props => (props.width ? props.width : 'auto')};
   height: ${props => (props.height ? props.height : 'auto')};
+  justify-content: ${props => (props.align? props.align:'flex-start')}
 `;
 export default ({
-  children, vertical, width, height, ...attrs
+  children, vertical, width, height, align, ...attrs
 }) => (
-  <DivUI {...attrs} vertical={vertical} width={width} height={height}>
+  <DivUI {...attrs} vertical={vertical} width={width} height={height} align={align}>
     {children}
   </DivUI>
 );

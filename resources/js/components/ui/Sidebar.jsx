@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { string } from 'postcss-selector-parser';
 import Button from './Button';
-import H1 from './H1';
+import H from './H';
 
 const SidebarUI = styled.nav`
   color: #3d4671;
@@ -39,11 +39,13 @@ const SidebarLinkListUI = styled.ul`
   overflow-y: auto
     ${({ sub }) => sub
       && `
-    padding-left: 30px;
     list-style: none;
     height: auto;
     border-bottom: none;
     overflow-y: auto
+    ${LinkUI}{
+      padding-left: 78px;
+    }
   `};
 `;
 const LinkUI = styled(Link)`
@@ -72,7 +74,12 @@ const SidebarListItemUI = styled.li`
   &${SidebarLinkListUI}: {
     display: none;
   }
+  ${({ sub }) => sub
+      && `
+    background:red;  
 
+
+  `};
   ${({ opened }) => opened
     && `
   ul {
@@ -95,24 +102,18 @@ const Sidebar = ({
   const a = 1;
   return (
     <SidebarUI>
-      <div>
-        <button>sdfsd</button>
-      </div>
-      <H1 bold>{title}</H1>
+      <H size='6' bold>{title}</H>
       <BrandUI>
         <figure>
           <img
             src={require('../../mockup/images/brand-logo.png')}
             alt="Brand name"
           />
-          <h3>{title}</h3>
+          <H size='3'>{title}</H>
         </figure>
       </BrandUI>
       <SidebarMainLinkUI>
         <Button link="#">Перейти на asdaсайт</Button>
-        {/* <button type="button" className="btn btn-link">
-
-        </button> */}
       </SidebarMainLinkUI>
 
       <SidebarLinkListUI>

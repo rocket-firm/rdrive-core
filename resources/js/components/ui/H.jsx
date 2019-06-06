@@ -83,6 +83,6 @@ const renderTitle = (size, color, children, bold, ...attrs) => {
 };
 const H = ({
   size, color, children, bold,
-}) => <div>{renderTitle(size, color, children, bold)}</div>;
+}) => <>{renderTitle(size, color, children, bold)}</>;
 
 export default H;
