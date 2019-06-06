@@ -16,13 +16,9 @@ const Kit = () => {
 
   return (
     <Layout>
-      <Layout width="250px">
+      <Layout width="250px" height="100vh">
         <Sidebar data={links} title="Kazkommerts Securities" />
       </Layout>
-      <img
-            src={logo}
-            alt="Brand name"
-          />
       <Layout vertical>
         <H size="2" color="#d1d1d1">Kitdasfaaaaa</H>
         <Button link="/test">asdasddddd</Button>

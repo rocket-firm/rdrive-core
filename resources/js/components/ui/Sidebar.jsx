@@ -4,25 +4,25 @@ import { Link } from "react-router-dom";
 import { string } from "postcss-selector-parser";
 import Button from "./Button";
 import H from "./H";
-import logo from "../../mockup/images/brand-logo.png"
 const SidebarUI = styled.nav`
   color: #3d4671;
   border-right: 1px solid #dbeaf4;
+  height:100%;
 `;
 
 const BrandUI = styled.div`
   display: flex;
   align-items: center;
+  
   height: 50px;
-  padding-left: 50px;
   border-bottom: 1px solid #dbeaf4;
-  &:figure {
+  figure {
     display: flex;
     align-items: center;
-    &:img {
+    img {
       margin-right: 4px;
     }
-    &:h3 {
+    h6 {
       margin: 0;
       font-weight: bold;
       font-size: 12px;
@@ -51,6 +51,7 @@ const SidebarLinkListUI = styled.ul`
 `;
 const LinkUI = styled(Link)`
   display: flex;
+  font-size:14px;
   align-items: center;
   height: 100%;
   color: #737a9b;
@@ -60,8 +61,25 @@ const LinkUI = styled(Link)`
   &:hover {
     background-color: #edf4f8;
   }
+  :before{
+    content: 'o';
+    margin-right: 10px;
+    font-size: 6px;
+  }
 `;
 
+const ButtonPlainUI = styled.button`
+  background-color: transparent;
+  color: #737a9b;
+  cursor:pointer;
+  &:hover {
+    color: #177ff2;
+  }
+  i {
+    position: relative;
+    bottom: -2px;
+  }
+`;
 const SidebarMainLinkUI = styled.div`
   display: flex;
   align-items: center;
@@ -90,6 +108,7 @@ const SidebarListItemUI = styled.li`
   }
 
   & > ${LinkUI} {
+    border:0;
     color: #ffffff;
     background-color: #737A9B;
     &:hover {
@@ -99,18 +118,37 @@ const SidebarListItemUI = styled.li`
   }
 `}
 `;
+const SidebarFooterUI = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  padding-left: 58px;
+  ${ButtonPlainUI} {
+    border:0;
+    padding:11px;
+    position: relative;
+    left: -0.75rem;
+  }
+  h3 {
+    margin: 0;
+    color: $color-primary-dark;
+    font-weight: bold;
+  }
+  figure{
+    margin:22px 0 0 0 ;
+  }
+ 
+`;
 const Sidebar = ({ title, children, data, opened, ...attrs }) => {
   const a = 1;
   return (
     <SidebarUI>
-
       <BrandUI>
         <figure>
-          <img
-            src={logo}
-            alt="Brand name"
-          />
-          <H size="6" bold>{title}</H>
+          <img  src={require('../../mockup/images/brand-logo.png')} alt="Brand name" />
+          <H size="6" bold>
+            {title}
+          </H>
         </figure>
       </BrandUI>
       <SidebarMainLinkUI>
@@ -140,28 +178,29 @@ const Sidebar = ({ title, children, data, opened, ...attrs }) => {
           );
         })}
       </SidebarLinkListUI>
-      <div className="sidebar__footer">
-        <button type="button" className="btn btn-plain">
-          <i className="icon-delete" />
+      <SidebarFooterUI>
+        <ButtonPlainUI>
+          {/* <i className="icon-delete" /> */}
           Корзина
-        </button>
-        <button type="button" className="btn btn-plain">
-          <i className="icon-man" />
+        </ButtonPlainUI>
+
+        <ButtonPlainUI>
+          {/* <i className="icon-man" /> */}
           Пользователи
-        </button>
-        <button type="button" className="btn btn-plain">
-          <i className="icon-gear" />
+        </ButtonPlainUI>
+        <ButtonPlainUI>
+          {/* <i className="icon-gear" /> */}
           Настройки
-        </button>
-        <button type="button" className="btn btn-plain">
-          <i className="icon-question-round" />
+        </ButtonPlainUI>
+        <ButtonPlainUI>
+          {/* <i className="icon-question-round" /> */}
           Раздел помощи
-        </button>
+        </ButtonPlainUI>
         <figure className="sidebar__footer__signature">
-          <h3>Rocket Engine</h3>
-          <img src="/static/images/image-rocketfirm-logo.png" />
+          <H size="3" bold>Rocket Engine</H>
+          <img  src={require('../../../../public/images/image-rocketfirm-logo.png')} alt="Brand name" />
         </figure>
-      </div>
+      </SidebarFooterUI>
     </SidebarUI>
   );
 };

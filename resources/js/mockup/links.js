@@ -67,7 +67,7 @@ const Links = [
 
   },
   {
-    name: 'asd  sadБольшая работа',
+    name: 'asd  sadБольшая работа ',
     data: '/',
   },
   {
