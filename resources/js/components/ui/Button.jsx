@@ -42,7 +42,7 @@ const Button = ({
 }) => {
 
   return (
-    link? <LinkUI to={link}>{children}</LinkUI>: <ButtonUI color={color}>{children}</ButtonUI>
+    link? <LinkUI {...attrs} to={link}>{children}</LinkUI>: <ButtonUI {...attrs} color={color}>{children}</ButtonUI>
   );
 };
 

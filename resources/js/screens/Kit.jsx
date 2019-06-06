@@ -13,7 +13,7 @@ const Kit = () => {
   const [isChecked, setChecker] = useState(false)
 
  return (
-   <Layout vertical>
+   <Layout vertical width="300px" background="red">
     <H  size="2" color="#d1d1d1">Kitdasfaaaaa</H>
     <Button link="/test" >asdasddddd</Button>
     <Input />
