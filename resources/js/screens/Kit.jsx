@@ -8,6 +8,8 @@ import Checkbox from 'components/ui/Checkbox';
 import Switch from 'components/ui/Switch';
 import links from '../mockup/links';
 
+import logo from "../mockup/images/brand-logo.png"
+            
 
 const Kit = () => {
   const [isChecked, setChecker] = useState(false);
@@ -17,6 +19,10 @@ const Kit = () => {
       <Layout width="250px">
         <Sidebar data={links} title="Kazkommerts Securities" />
       </Layout>
+      <img
+            src={logo}
+            alt="Brand name"
+          />
       <Layout vertical>
         <H size="2" color="#d1d1d1">Kitdasfaaaaa</H>
         <Button link="/test">asdasddddd</Button>

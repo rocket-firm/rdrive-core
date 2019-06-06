@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { string } from 'postcss-selector-parser';
-import Button from './Button';
-import H from './H';
-
+import React, { Fragment } from "react";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+import { string } from "postcss-selector-parser";
+import Button from "./Button";
+import H from "./H";
+import logo from "../../mockup/images/brand-logo.png"
 const SidebarUI = styled.nav`
   color: #3d4671;
   border-right: 1px solid #dbeaf4;
@@ -37,8 +37,9 @@ const SidebarLinkListUI = styled.ul`
   height: 500px;
   border-bottom: 1px solid #dbeaf4;
   overflow-y: auto
-    ${({ sub }) => sub
-      && `
+    ${({ sub }) =>
+      sub &&
+      `
     list-style: none;
     height: auto;
     border-bottom: none;
@@ -74,14 +75,16 @@ const SidebarListItemUI = styled.li`
   &${SidebarLinkListUI}: {
     display: none;
   }
-  ${({ sub }) => sub
-      && `
+  ${({ sub }) =>
+    sub &&
+    `
     background:red;  
 
 
   `};
-  ${({ opened }) => opened
-    && `
+  ${({ opened }) =>
+    opened &&
+    `
   ul {
     display: block;
   }
@@ -96,20 +99,18 @@ const SidebarListItemUI = styled.li`
   }
 `}
 `;
-const Sidebar = ({
-  title, children, data, opened, ...attrs
-}) => {
+const Sidebar = ({ title, children, data, opened, ...attrs }) => {
   const a = 1;
   return (
     <SidebarUI>
-      <H size='6' bold>{title}</H>
+
       <BrandUI>
         <figure>
           <img
-            src={require('../../mockup/images/brand-logo.png')}
+            src={logo}
             alt="Brand name"
           />
-          <H size='3'>{title}</H>
+          <H size="6" bold>{title}</H>
         </figure>
       </BrandUI>
       <SidebarMainLinkUI>
@@ -119,7 +120,7 @@ const Sidebar = ({
       <SidebarLinkListUI>
         {data.map((item, idx) => {
           const { name, data } = item;
-          return typeof data === 'string' ? (
+          return typeof data === "string" ? (
             <SidebarListItemUI key={idx}>
               <LinkUI to="#">{name}</LinkUI>
             </SidebarListItemUI>
@@ -142,23 +143,19 @@ const Sidebar = ({
       <div className="sidebar__footer">
         <button type="button" className="btn btn-plain">
           <i className="icon-delete" />
-          {' '}
-Корзина
+          Корзина
         </button>
         <button type="button" className="btn btn-plain">
           <i className="icon-man" />
-          {' '}
-Пользователи
+          Пользователи
         </button>
         <button type="button" className="btn btn-plain">
           <i className="icon-gear" />
-          {' '}
-Настройки
+          Настройки
         </button>
         <button type="button" className="btn btn-plain">
           <i className="icon-question-round" />
-          {' '}
-Раздел помощи
+          Раздел помощи
         </button>
         <figure className="sidebar__footer__signature">
           <h3>Rocket Engine</h3>
