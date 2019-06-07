@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Layout from "components/Layout";
 import H from "components/ui/H";
 import Button from "components/ui/Button";
+import DeleteButton from "components/ui/DeleteButton";
 import Input from "components/ui/Input";
 import Sidebar from "components/ui/Sidebar";
 import Checkbox from "components/ui/Checkbox";
@@ -35,6 +36,8 @@ const Kit = () => {
           checked={isBookmarked}
           onChange={() => setBookmark(event.target.checked)}
         />
+
+        <DeleteButton />
       </Layout>
     </Layout>
   );
