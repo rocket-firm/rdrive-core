@@ -6,12 +6,14 @@ const H1UI = styled.h1`
   color: ${props => (props.color ? props.color : '#3D4671')};
   font-weight: ${props => (props.bold ? 'bold' : 'normal')};
   font-size: 24px;
+  line-height: 30px;
   margin: 0 0 15px 0;
 `;
 const H2UI = styled.h2`
   color: ${props => (props.color ? props.color : '#3D4671')};
   font-weight: ${props => (props.bold ? 'bold' : 'normal')};
   font-size: 18px;
+  line-height: 23px
   margin: 0 0 15px 0;
 `;
 const H3UI = styled.h3`

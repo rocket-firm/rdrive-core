@@ -145,7 +145,7 @@ const Sidebar = ({ title, children, data, opened, ...attrs }) => {
     <SidebarUI>
       <BrandUI>
         <figure>
-          <img  src={require('../../mockup/images/brand-logo.png')} alt="Brand name" />
+          {/* <img  src={require('../../mockup/images/brand-logo.png')} alt="Brand name" /> */}
           <H size="6" bold>
             {title}
           </H>

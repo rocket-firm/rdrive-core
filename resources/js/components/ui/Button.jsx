@@ -4,10 +4,9 @@ import styled from 'styled-components';
 
 const ButtonUI = styled.button`
   cursor: pointer;
-  color: #ffffff;
-  background-color: ${props => (props.color ? props.color : '#177FF2')};
+  color: ${props => (props.system ? "#3D4671" : '#ffffff')};  
+  background-color: ${props => (props.system ? "#DBEAF4" : '#177FF2')};
   display: inline-block;
-  font-weight: 400;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -17,10 +16,19 @@ const ButtonUI = styled.button`
   user-select: none;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
   border-radius: 0.25rem;
   transition: color 0.15s e;
+  :hover{
+    background: ${props => (props.system ? "#DBEAF4" : '#4DA1FF')}; 
+    color: ${props => (props.system ? "#177FF2" : '#ffffff')};  
+  }
+  :disabled{
+    background-color:#DBEAF4;
+    color:#c4c7d4;
+  }
 `;
 
 const LinkUI = styled(Link)`
@@ -34,13 +42,13 @@ const LinkUI = styled(Link)`
 `;
 
 const Button = ({
-  children, color, link, ...attrs
+  children, color, system, link, disabled,...attrs
 }) => (link ? (
   <LinkUI {...attrs} to={link}>
     {children}
   </LinkUI>
 ) : (
-  <ButtonUI {...attrs} color={color}>
+  <ButtonUI {...attrs} system={system} color={color} disabled={disabled}>
     {children}
   </ButtonUI>
 ));
