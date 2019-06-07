@@ -7,13 +7,13 @@ import H from "./H";
 const SidebarUI = styled.nav`
   color: #3d4671;
   border-right: 1px solid #dbeaf4;
-  height:100%;
+  height: 100%;
 `;
 
 const BrandUI = styled.div`
   display: flex;
   align-items: center;
-  
+
   height: 50px;
   border-bottom: 1px solid #dbeaf4;
   figure {
@@ -51,7 +51,7 @@ const SidebarLinkListUI = styled.ul`
 `;
 const LinkUI = styled(Link)`
   display: flex;
-  font-size:14px;
+  font-size: 14px;
   align-items: center;
   height: 100%;
   color: #737a9b;
@@ -61,8 +61,8 @@ const LinkUI = styled(Link)`
   &:hover {
     background-color: #edf4f8;
   }
-  :before{
-    content: 'o';
+  :before {
+    content: "o";
     margin-right: 10px;
     font-size: 6px;
   }
@@ -71,7 +71,7 @@ const LinkUI = styled(Link)`
 const ButtonPlainUI = styled.button`
   background-color: transparent;
   color: #737a9b;
-  cursor:pointer;
+  cursor: pointer;
   &:hover {
     color: #177ff2;
   }
@@ -124,8 +124,8 @@ const SidebarFooterUI = styled.div`
   align-items: flex-start;
   padding-left: 58px;
   ${ButtonPlainUI} {
-    border:0;
-    padding:11px;
+    border: 0;
+    padding: 11px;
     position: relative;
     left: -0.75rem;
   }
@@ -134,10 +134,9 @@ const SidebarFooterUI = styled.div`
     color: $color-primary-dark;
     font-weight: bold;
   }
-  figure{
-    margin:22px 0 0 0 ;
+  figure {
+    margin: 22px 0 0 0;
   }
- 
 `;
 const Sidebar = ({ title, children, data, opened, ...attrs }) => {
   const a = 1;
@@ -197,8 +196,13 @@ const Sidebar = ({ title, children, data, opened, ...attrs }) => {
           Раздел помощи
         </ButtonPlainUI>
         <figure className="sidebar__footer__signature">
-          <H size="3" bold>Rocket Engine</H>
-          <img  src={require('../../../../public/images/image-rocketfirm-logo.png')} alt="Brand name" />
+          <H size="3" bold>
+            Rocket Engine
+          </H>
+          <img
+            src={require("../../../../public/images/image-rocketfirm-logo.png")}
+            alt="Brand name"
+          />
         </figure>
       </SidebarFooterUI>
     </SidebarUI>
