@@ -8,6 +8,7 @@ import Sidebar from "components/ui/Sidebar";
 import Checkbox from "components/ui/Checkbox";
 import Star from "components/ui/Star";
 import Switch from "components/ui/Switch";
+import PreviewButton from "components/ui/PreviewButton";
 import links from "../mockup/links";
 
 const Kit = () => {
@@ -39,6 +40,7 @@ const Kit = () => {
 
         <DeleteButton text/>
         <DeleteButton />
+        <PreviewButton/>
       </Layout>
     </Layout>
   );

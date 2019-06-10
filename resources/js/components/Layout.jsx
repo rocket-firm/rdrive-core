@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const DivUI = styled.div`
   display: flex;
   flex-flow: ${props => (props.vertical ? 'column' : 'row')};
-  width: ${props => (props.width ? props.width : 'auto')};
+  width: ${props => (props.width ? props.width : 'inherit')};
   height: ${props => (props.height ? props.height : 'auto')};
   justify-content: ${props => (props.align? props.align:'flex-start')}
 `;
