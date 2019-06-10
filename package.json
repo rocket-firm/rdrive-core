@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "flatpickr": "^4.6.1",
     "history": "^4.9.0",
     "laravel-mix": "^4.0.15",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-flatpickr": "^3.9.0",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
