@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "components/Layout";
+import Layout from "components/ui/Layout";
 import H from "components/ui/H";
 import Button from "components/ui/Button";
 import DeleteButton from "components/ui/DeleteButton";
@@ -9,6 +9,7 @@ import Checkbox from "components/ui/Checkbox";
 import Star from "components/ui/Star";
 import Switch from "components/ui/Switch";
 import PreviewButton from "components/ui/PreviewButton";
+import Calendar from "components/ui/Calendar";
 import links from "../mockup/links";
 
 const Kit = () => {
@@ -41,6 +42,7 @@ const Kit = () => {
         <DeleteButton text/>
         <DeleteButton />
         <PreviewButton/>
+        <Calendar/>
       </Layout>
     </Layout>
   );

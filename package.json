@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
+    "flatpickr": "^4.6.1",
     "history": "^4.9.0",
     "laravel-mix": "^4.0.15",
     "react": "^16.8.6",
