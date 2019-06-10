@@ -10,6 +10,7 @@ const CalendarWrapperUI = styled.span`
 `;
 
 const CalendarInputUI = styled(Flatpickr)`
+box-sizing: border-box;
   width: 116px;
   height: 35px;
   padding: 10px 10px;

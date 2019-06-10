@@ -9,6 +9,8 @@ import Checkbox from "components/ui/Checkbox";
 import Star from "components/ui/Star";
 import Switch from "components/ui/Switch";
 import PreviewButton from "components/ui/PreviewButton";
+
+import AddButton from "components/ui/AddButton";
 import Calendar from "components/ui/Calendar";
 import links from "../mockup/links";
 
@@ -20,7 +22,7 @@ const Kit = () => {
       <Layout width="250px" height="100vh">
         <Sidebar data={links} title="Kazkommerts Securities" />
       </Layout>
-      <Layout vertical>
+      <Layout vertical align='space-around'>
         <H size="1" bold color="#3D4671">
           Kitdasfaaaaa
         </H>
@@ -43,6 +45,7 @@ const Kit = () => {
         <DeleteButton />
         <PreviewButton/>
         <Calendar/>
+        <AddButton/>
       </Layout>
     </Layout>
   );
