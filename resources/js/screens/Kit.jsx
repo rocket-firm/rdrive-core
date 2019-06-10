@@ -37,6 +37,7 @@ const Kit = () => {
           onChange={() => setBookmark(event.target.checked)}
         />
 
+        <DeleteButton text/>
         <DeleteButton />
       </Layout>
     </Layout>
