@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const InputUI = styled.input`
 
-  width: 100%;
   box-sizing: border-box;
   height: 35px;
   border-radius: 2px;
@@ -14,7 +13,7 @@ const InputUI = styled.input`
   font-size: 15px;
   color: #3d4671;
   line-height: normal;
-  min-width: 220px;
+  width: 220px;
   outline: none;
   :focus{
     border-color:#177FF2;

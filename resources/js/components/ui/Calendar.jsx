@@ -14,6 +14,8 @@ box-sizing: border-box;
   width: 116px;
   height: 35px;
   padding: 10px 10px;
+  border: 1px solid #DBEAF4;
+  border-radius: 2px;
   outline: none;
   color: #3d4671;
   font: 15px/19px Source Sans Pro;

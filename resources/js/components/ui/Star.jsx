@@ -31,12 +31,12 @@ const StyledStar = styled.svg`
   cursor: pointer;
   :hover{
     path{
-      stroke:#177FF2;
+      stroke:${props => (props.checked ? "#737A9B" : "#177FF2")};;
     }
   }
   ${Icon} {
     visibility: ${props => (props.checked ? "visible" : "hidden")};
-
+    
   }
 `;
 

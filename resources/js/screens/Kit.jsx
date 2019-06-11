@@ -9,6 +9,7 @@ import Checkbox from "components/ui/Checkbox";
 import Star from "components/ui/Star";
 import Switch from "components/ui/Switch";
 import PreviewButton from "components/ui/PreviewButton";
+import DropdownArrows from "components/ui/DropdownArrows";
 
 import AddButton from "components/ui/AddButton";
 import Calendar from "components/ui/Calendar";
@@ -22,7 +23,8 @@ const Kit = () => {
       <Layout width="250px" height="100vh">
         <Sidebar data={links} title="Kazkommerts Securities" />
       </Layout>
-      <Layout vertical align='space-around'>
+      
+      <Layout vertical >
         <H size="1" bold color="#3D4671">
           Kitdasfaaaaa
         </H>
@@ -31,6 +33,7 @@ const Kit = () => {
         <Button system>Системные </Button>
         <Button link="/test">Ссылка</Button>
         <Input />
+        <DropdownArrows/>
         <Checkbox
           checked={isChecked}
           onChange={() => setChecker(event.target.checked)}
@@ -46,6 +49,7 @@ const Kit = () => {
         <PreviewButton/>
         <Calendar/>
         <AddButton/>
+        
       </Layout>
     </Layout>
   );
