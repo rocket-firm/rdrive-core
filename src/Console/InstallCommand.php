@@ -55,6 +55,12 @@ class InstallCommand extends Command
         $this->info('Publishing the Translatable config file');
         $this->call('vendor:publish', ['--tag' => ['translatable']]);
 
+        /**
+         * Publish config and migrations from `spatie/laravel-translation-loader` package
+         */
+        $this->info('Publishing the Translation loader config and migrations files');
+        $this->call('vendor:publish', ['--tag' => ['migrations', 'config'], '--provider' => 'Spatie\TranslationLoader\TranslationServiceProvider']);
+
         $this->setLocales();
     }
 

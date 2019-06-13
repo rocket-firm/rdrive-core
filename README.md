@@ -14,6 +14,18 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+In `config/app.php` (Laravel) you should replace Laravel's translation service provider
+
+```php
+Illuminate\Translation\TranslationServiceProvider::class,
+```
+
+by the one included in this package:
+
+```php
+Spatie\TranslationLoader\TranslationServiceProvider::class,
+```
+
 Finally, we can install Rdrive. You can choose to install Rdrive with dummy data or without the dummy data. The dummy data will include 1 admin account (if no users already exist), 1 demo page, 4 demo posts, 2 categories and 7 settings.  
 
 <details>
@@ -44,6 +56,8 @@ Then add these dummy routes in your `api.php` file:
 Route::apiResources(['countries' => 'API\CountryController']);
 ```
 </details>
+
+---
 
 And we're all good to go!  
 Start up a local development server with php artisan serve And, visit the URL http://localhost:8000/admin in your browser.  
