@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\CountryRequest;
+use App\Http\Requests\LanguageLineRequest;
 use App\Http\Resources\CountryResource;
 use App\Models\Country;
 use Rocketfirm\Rdrive\Http\Controllers\RdriveCrudController;
@@ -22,10 +22,10 @@ class CountryController extends RdriveCrudController
     /**
      * Store a newly created resource in storage.
      *
-     * @param CountryRequest $request
+     * @param LanguageLineRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CountryRequest $request)
+    public function store(LanguageLineRequest $request)
     {
         $country = $this->modelClass::create($request->all());
 
@@ -35,11 +35,11 @@ class CountryController extends RdriveCrudController
     /**
      * Update the specified resource in storage.
      *
-     * @param CountryRequest $request
+     * @param LanguageLineRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CountryRequest $request, $id)
+    public function update(LanguageLineRequest $request, $id)
     {
         $country = $this->modelClass::findOrFail($id);
 

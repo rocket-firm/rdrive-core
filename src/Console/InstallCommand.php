@@ -3,7 +3,6 @@
 namespace Rocketfirm\Rdrive\Console;
 
 use Illuminate\Console\Command;
-use Rocketfirm\Rdrive\Providers\RdriveServiceProvider;
 use Symfony\Component\Console\Input\InputOption;
 
 class InstallCommand extends Command
@@ -55,8 +54,19 @@ class InstallCommand extends Command
         $this->info('Publishing the Translatable config file');
         $this->call('vendor:publish', ['--tag' => ['translatable']]);
 
-        $this->info('Migrating the database tables into your application');
-        $this->call('migrate', ['--force' => $this->option('force')]);
+        /**
+         * Publish config and migrations from `spatie/laravel-translation-loader` package
+         */
+        $this->info('Publishing the Translation loader config and migrations files');
+        $this->call('vendor:publish', ['--tag' => ['migrations', 'config'], '--provider' => 'Spatie\TranslationLoader\TranslationServiceProvider']);
+
+        /**
+         * Publish languages from `andrey-helldar/laravel-lang-publisher` package
+         */
+        $this->info('Publishing languages');
+        $this->call('trans:publish', ['locale' => 'en', '--force' => $this->option('force')]);
+        $this->call('trans:publish', ['locale' => 'ru', '--force' => $this->option('force')]);
+        $this->call('trans:publish', ['locale' => 'kk', '--force' => $this->option('force')]);
 
         $this->setLocales();
     }
