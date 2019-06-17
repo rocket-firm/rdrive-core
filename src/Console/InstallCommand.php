@@ -68,6 +68,12 @@ class InstallCommand extends Command
         $this->call('trans:publish', ['locale' => 'ru', '--force' => $this->option('force')]);
         $this->call('trans:publish', ['locale' => 'kk', '--force' => $this->option('force')]);
 
+        /**
+         * Publish config and migrations from `spatie/laravel-permission` package
+         */
+        $this->info('Publishing the Permissions migrations files');
+        $this->call('vendor:publish', ['--tag' => ['migrations', 'config'], '--provider' => 'Spatie\Permission\PermissionServiceProvider']);
+
         $this->setLocales();
     }
 
