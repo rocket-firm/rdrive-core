@@ -53,7 +53,7 @@ php artisan db:seed --class=RdriveDummyDatabaseSeeder
 
 Then add these dummy routes in your `api.php` file:
 ```php
-Route::apiResources(['countries' => 'API\CountryController']);
+Route::apiResources(['countries' => 'API\Admin\CountryController']);
 ```
 </details>
 
