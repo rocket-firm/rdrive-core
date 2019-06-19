@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Admin;
 
-use App\Http\Requests\LanguageLineRequest;
+use App\Http\Requests\CountryRequest;
 use App\Http\Resources\CountryResource;
 use App\Models\Country;
 use Rocketfirm\Rdrive\Http\Controllers\RdriveCrudController;
@@ -22,29 +22,43 @@ class CountryController extends RdriveCrudController
     /**
      * Store a newly created resource in storage.
      *
-     * @param LanguageLineRequest $request
+     * @param CountryRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LanguageLineRequest $request)
+    public function store(CountryRequest $request)
     {
         $country = $this->modelClass::create($request->all());
 
-        return $this->serializeModel($country);
+        return response($this->serializeModel($country));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param LanguageLineRequest $request
+     * @param CountryRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(LanguageLineRequest $request, $id)
+    public function update(CountryRequest $request, $id)
     {
         $country = $this->modelClass::findOrFail($id);
 
         $country->update($request->all());
 
-        return $this->serializeModel($country);
+        return response($this->serializeModel($country));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Country $country
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function destroy(Country $country)
+    {
+        $country->delete();
+
+        return response('Deleted');
     }
 }
