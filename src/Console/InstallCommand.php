@@ -49,7 +49,7 @@ class InstallCommand extends Command
         }
 
         /**
-         * Publish config from `dimsav/laravel-translatable` package
+         * Publish config from `Astrotomic/laravel-translatable` package
          */
         $this->info('Publishing the Translatable config file');
         $this->call('vendor:publish', ['--tag' => ['translatable']]);
