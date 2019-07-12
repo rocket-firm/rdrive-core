@@ -67,7 +67,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         languages: payload,
-        language: state.language || [...payload].push().value,
+        language: state.language || [...payload].shift().value,
       };
     case types.FETCH_LOCALIZATION_DATA_SUCCESS:
       return {

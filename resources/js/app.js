@@ -8,7 +8,9 @@ import { initLocalizations } from 'services';
 
 const LanguageContainer = (props) => {
   const { localizationsData } = props;
+  console.log('here')
   if (Object.keys(localizationsData).length) {
+    console.log('there')
     return (<Routes />);
   }
   return null;

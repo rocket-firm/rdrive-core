@@ -4,14 +4,12 @@ import { bindActionCreators } from 'redux';
 import { fetchSettings } from 'store/settings';
 import { fetchSchemasList } from 'store/schemas';
 import Dashboard from 'screens/Dashboard';
-import { setLanguage } from '../store/localizations';
 
 class DashboardScreenContainer extends Component {
   componentDidMount() {
     const {
       fetchSettings: fetchSettingsComp,
-      fetchSchemasList: fetchSchemasListComp,
-      setLanguage: setLanguageComp,
+      fetchSchemasList: fetchSchemasListComp
     } = this.props;
     fetchSettingsComp();
     fetchSchemasListComp();
@@ -33,7 +31,6 @@ export default connect(
   }),
   dispatch => bindActionCreators({
     fetchSettings,
-    fetchSchemasList,
-    setLanguage,
-  }, dispatch),
+    fetchSchemasList
+  }, dispatch)
 )(DashboardScreenContainer);

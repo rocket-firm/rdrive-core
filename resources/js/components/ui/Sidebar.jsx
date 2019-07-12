@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { t } from 'services';
 import Button from './Button';
 import H from './H';
+import SelectChangeContainer from '../../containers/SelectChangeContainer';
 
 const SidebarUI = styled.nav`
   color: #3d4671;
@@ -196,6 +197,7 @@ const Sidebar = ({
         );
       })}
     </SidebarLinkListUI>
+    <SelectChangeContainer />
     <SidebarFooterUI>
       <ButtonPlainUI>
         {/* <i className="icon-delete" /> */}
@@ -204,7 +206,7 @@ const Sidebar = ({
 
       <ButtonPlainUI>
         {/* <i className="icon-man" /> */}
-          Пользователи
+        {t('common.users', 'Users')}
       </ButtonPlainUI>
       <ButtonPlainUI>
         {/* <i className="icon-gear" /> */}
