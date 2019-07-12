@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+
 const PreviewIconUI = styled.svg`
   width: 11px;
   height: 12px;

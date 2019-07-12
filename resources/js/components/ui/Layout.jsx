@@ -10,9 +10,17 @@ const DivUI = styled.div`
   justify-content: ${props => (props.justifyContent ? props.justifyContent : 'flex-start')};
 `;
 export default ({
-  children, vertical, width, height, alignItems,justifyContent, ...attrs
+  children, vertical, width, height, alignItems, justifyContent, ...attrs
 }) => (
-  <DivUI {...attrs} vertical={vertical} width={width} height={height} justifyContent={justifyContent} alignItems={alignItems}>
+  <DivUI
+    {...attrs}
+    vertical={vertical}
+    width={width}
+    height={height}
+    justifyContent={justifyContent}
+    alignItems={alignItems}
+  >
+
     {children}
   </DivUI>
 );

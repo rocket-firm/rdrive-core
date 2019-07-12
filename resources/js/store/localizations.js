@@ -52,8 +52,8 @@ export const fetchLocalizationData = () => async (dispatch) => {
 
 export const initialState = {
   language: null,
-  languages_list: [],
-  localizations_data: {},
+  languagesList: [],
+  localizationsData: {},
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -67,11 +67,12 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         languages: payload,
+        language: state.language || [...payload].push().value,
       };
     case types.FETCH_LOCALIZATION_DATA_SUCCESS:
       return {
         ...state,
-        localizations_data: payload,
+        localizationsData: payload,
       };
     default:
       return state;

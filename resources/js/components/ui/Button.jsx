@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const ButtonUI = styled.button`
   cursor: pointer;
-  color: ${props => (props.system ? "#3D4671" : "#ffffff")};
-  background-color: ${props => (props.system ? "#DBEAF4" : "#177FF2")};
+  color: ${props => (props.system ? '#3D4671' : '#ffffff')};
+  background-color: ${props => (props.system ? '#DBEAF4' : '#177FF2')};
   display: inline-block;
   text-align: center;
   vertical-align: middle;
@@ -22,8 +22,8 @@ const ButtonUI = styled.button`
   border-radius: 0.25rem;
   transition: color 0.15s e;
   :hover {
-    background: ${props => (props.system ? "#DBEAF4" : "#4DA1FF")};
-    color: ${props => (props.system ? "#177FF2" : "#ffffff")};
+    background: ${props => (props.system ? '#DBEAF4' : '#4DA1FF')};
+    color: ${props => (props.system ? '#177FF2' : '#ffffff')};
   }
   :disabled {
     background-color: #dbeaf4;
@@ -38,18 +38,20 @@ const LinkUI = styled(Link)`
   font-size: 12px;
   position: relative;
   padding-left: 14px;
-  color: ${props => (props.color ? props.color : "#d1d1d1")};
+  color: ${props => (props.color ? props.color : '#d1d1d1')};
 `;
 
-const Button = ({ children, color, system, link, disabled, ...attrs }) =>
-  link ? (
-    <LinkUI {...attrs} to={link}>
-      {children}
-    </LinkUI>
-  ) : (
-    <ButtonUI {...attrs} system={system} color={color} disabled={disabled}>
-      {children}
-    </ButtonUI>
-  );
+const Button = ({
+  children, color, system, link, disabled, ...attrs
+}) => (link ? (
+  <LinkUI {...attrs} to={link}>
+    {children}
+  </LinkUI>
+) : (
+  <ButtonUI {...attrs} system={system} color={color} disabled={disabled}>
+    {children}
+  </ButtonUI>
+));
+
 
 export default Button;

@@ -78,23 +78,23 @@ export const getSettings = async () => {
   return {
     en: {
       common: {
-        site_uri: 'https://rocketfirm.com/',
-        site_logo: logo,
-        site_name: 'RDrive',
+        siteUri: 'https://rocketfirm.com/',
+        siteLogo: logo,
+        siteName: 'RDrive',
       },
     },
     ru: {
       common: {
-        site_uri: 'https://rocketfirm.com/',
-        site_logo: logo,
-        site_name: 'RDrive',
+        siteUri: 'https://rocketfirm.com/',
+        siteLogo: logo,
+        siteName: 'RDrive',
       },
     },
     kk: {
       common: {
-        site_uri: 'https://rocketfirm.com/',
-        site_logo: logo,
-        site_name: 'RDrive',
+        siteUri: 'https://rocketfirm.com/',
+        siteLogo: logo,
+        siteName: 'RDrive',
       },
     },
   };

@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
-import { string } from "postcss-selector-parser";
-import Button from "./Button";
-import H from "./H";
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { t } from 'services';
+import Button from './Button';
+import H from './H';
+
 const SidebarUI = styled.nav`
   color: #3d4671;
   border-right: 1px solid #dbeaf4;
@@ -29,26 +30,6 @@ const BrandUI = styled.div`
     }
   }
 `;
-
-const SidebarLinkListUI = styled.ul`
-  padding-top: 15px;
-  padding-left: 0;
-  list-style: none;
-  height: 500px;
-  border-bottom: 1px solid #dbeaf4;
-  overflow-y: auto
-    ${({ sub }) =>
-      sub &&
-      `
-    list-style: none;
-    height: auto;
-    border-bottom: none;
-    overflow-y: auto
-    ${LinkUI}{
-      padding-left: 78px;
-    }
-  `};
-`;
 const LinkUI = styled(Link)`
   display: flex;
   font-size: 14px;
@@ -67,6 +48,26 @@ const LinkUI = styled(Link)`
     font-size: 6px;
   }
 `;
+
+const SidebarLinkListUI = styled.ul`
+  padding-top: 15px;
+  padding-left: 0;
+  list-style: none;
+  height: 500px;
+  border-bottom: 1px solid #dbeaf4;
+  overflow-y: auto
+    ${({ sub }) => sub
+      && `
+    list-style: none;
+    height: auto;
+    border-bottom: none;
+    overflow-y: auto
+    ${LinkUI}{
+      padding-left: 78px;
+    }
+  `};
+`;
+
 
 const ButtonPlainUI = styled.button`
   background-color: transparent;
@@ -93,16 +94,14 @@ const SidebarListItemUI = styled.li`
   &${SidebarLinkListUI}: {
     display: none;
   }
-  ${({ sub }) =>
-    sub &&
-    `
+  ${({ sub }) => sub
+    && `
     background:red;  
 
 
   `};
-  ${({ opened }) =>
-    opened &&
-    `
+  ${({ opened }) => opened
+    && `
   ul {
     display: block;
   }
@@ -138,74 +137,93 @@ const SidebarFooterUI = styled.div`
     margin: 22px 0 0 0;
   }
 `;
-const Sidebar = ({ title, children, data, opened, ...attrs }) => {
-  const a = 1;
-  return (
-    <SidebarUI>
-      <BrandUI>
-        <figure>
-          {/* <img  src={require('../../mockup/images/brand-logo.png')} alt="Brand name" /> */}
-          <H size="6" bold>
-            {title}
-          </H>
-        </figure>
-      </BrandUI>
-      <SidebarMainLinkUI>
-        <Button link="#">Перейти на asdaсайт</Button>
-      </SidebarMainLinkUI>
+const Sidebar = ({
+  settings: {
+    common: {
+      siteLogo,
+      siteName,
+      siteUri,
+    },
+  },
+  schemas,
+  // title,
+  // children,
+  data,
+  // opened,
+}) => (
+  <SidebarUI>
+    <BrandUI>
+      <figure>
+        <img height="25" src={siteLogo} alt="Brand name" />
+        <H size="6" bold>
+          { siteName }
+        </H>
+      </figure>
+    </BrandUI>
+    <SidebarMainLinkUI>
+      <Button link={siteUri}>
+        { t('dashboard.go_to_size', 'Перейти на сайт')}
+      </Button>
+    </SidebarMainLinkUI>
 
-      <SidebarLinkListUI>
-        {data.map((item, idx) => {
-          const { name, data } = item;
-          return typeof data === "string" ? (
-            <SidebarListItemUI key={idx}>
-              <LinkUI to="#">{name}</LinkUI>
+    <SidebarLinkListUI>
+      {
+          Object.values(schemas).map((item, key) => (
+            <SidebarListItemUI key={key}>
+              <LinkUI to="#">{item.name}</LinkUI>
             </SidebarListItemUI>
-          ) : (
-            <Fragment key={idx}>
-              <SidebarListItemUI opened>
-                <LinkUI to="#">{name}</LinkUI>
-                <SidebarLinkListUI sub>
-                  {data.map((sub, ids) => (
-                    <SidebarListItemUI key={ids}>
-                      <LinkUI to="#">{sub.name}</LinkUI>
-                    </SidebarListItemUI>
-                  ))}
-                </SidebarLinkListUI>
-              </SidebarListItemUI>
-            </Fragment>
-          );
-        })}
-      </SidebarLinkListUI>
-      <SidebarFooterUI>
-        <ButtonPlainUI>
-          {/* <i className="icon-delete" /> */}
-          Корзина
-        </ButtonPlainUI>
+          ))
+        }
+      {data && data.map((item, idx) => {
+        const { name, dataItem } = item;
+        return typeof dataItem === 'string' ? (
+          <SidebarListItemUI key={idx}>
+            <LinkUI to="#">{name}</LinkUI>
+          </SidebarListItemUI>
+        ) : (
+          <Fragment key={idx}>
+            <SidebarListItemUI opened>
+              <LinkUI to="#">{name}</LinkUI>
+              <SidebarLinkListUI sub>
+                {dataItem.map((sub, ids) => (
+                  <SidebarListItemUI key={ids}>
+                    <LinkUI to="#">{sub.name}</LinkUI>
+                  </SidebarListItemUI>
+                ))}
+              </SidebarLinkListUI>
+            </SidebarListItemUI>
+          </Fragment>
+        );
+      })}
+    </SidebarLinkListUI>
+    <SidebarFooterUI>
+      <ButtonPlainUI>
+        {/* <i className="icon-delete" /> */}
+        {t('common.adsasdsad', 'kahsdkjahdkjhahd')}
+      </ButtonPlainUI>
 
-        <ButtonPlainUI>
-          {/* <i className="icon-man" /> */}
+      <ButtonPlainUI>
+        {/* <i className="icon-man" /> */}
           Пользователи
-        </ButtonPlainUI>
-        <ButtonPlainUI>
-          {/* <i className="icon-gear" /> */}
+      </ButtonPlainUI>
+      <ButtonPlainUI>
+        {/* <i className="icon-gear" /> */}
           Настройки
-        </ButtonPlainUI>
-        <ButtonPlainUI>
-          {/* <i className="icon-question-round" /> */}
+      </ButtonPlainUI>
+      <ButtonPlainUI>
+        {/* <i className="icon-question-round" /> */}
           Раздел помощи
-        </ButtonPlainUI>
-        <figure className="sidebar__footer__signature">
-          <H size="3" bold>
+      </ButtonPlainUI>
+      <figure className="sidebar__footer__signature">
+        <H size="3" bold>
             Rocket Engine
-          </H>
-          <img
-            src={require("../../../../public/images/image-rocketfirm-logo.png")}
-            alt="Brand name"
-          />
-        </figure>
-      </SidebarFooterUI>
-    </SidebarUI>
-  );
-};
+        </H>
+        <img
+          src={require('../../../../public/images/image-rocketfirm-logo.png')}
+          alt="Brand name"
+        />
+      </figure>
+    </SidebarFooterUI>
+  </SidebarUI>
+);
 export default Sidebar;

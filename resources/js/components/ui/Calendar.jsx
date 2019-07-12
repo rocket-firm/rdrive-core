@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import Layout from "./Layout";
-import "flatpickr/dist/flatpickr.css";
-import Flatpickr from "react-flatpickr";
-import { Russian } from "flatpickr/dist/l10n/ru.js";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import 'flatpickr/dist/flatpickr.css';
+import Flatpickr from 'flatpickr';
+import { Russian } from 'flatpickr/dist/l10n/ru';
+import Layout from './Layout';
 
 const CalendarWrapperUI = styled.span`
   position: relative;
@@ -32,7 +32,7 @@ const CalendarIconUI = styled.svg`
 export default class Calendar extends Component {
   state = {
     dateStart: new Date(),
-    dateEnd: new Date()
+    dateEnd: new Date(),
   };
 
   render() {
@@ -43,8 +43,8 @@ export default class Calendar extends Component {
           <CalendarInputUI
             options={{ locale: Russian }}
             value={dateStart}
-            onChange={dateStart => {
-              this.setState({ dateStart });
+            onChange={(value) => {
+              this.setState({ dateStart: value });
             }}
           />
           <CalendarIconUI viewBox="0 0 13 14">
@@ -59,8 +59,8 @@ export default class Calendar extends Component {
           <CalendarInputUI
             options={{ locale: Russian }}
             value={dateEnd}
-            onChange={dateEnd => {
-              this.setState({ dateEnd });
+            onChange={(value) => {
+              this.setState({ dateEnd: value });
             }}
           />
           <CalendarIconUI viewBox="0 0 13 14">
