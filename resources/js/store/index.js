@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
+import {reducer as formReducer} from 'redux-form';
 import {
   putNested,
   loadStore,
@@ -11,11 +12,14 @@ import { types as rootTypes, putValue } from './root';
 import localizations from './localizations';
 import settings from './settings';
 import schemas from './schemas';
+import user from './authorization';
 
 const reducers = combineReducers({
   localizations,
   settings,
   schemas,
+  user,
+  form: formReducer
 });
 
 const rootReducer = (state, action) => {

@@ -173,3 +173,22 @@ export const getSchemasList = async () => {
   }  
   };
 };
+
+// for authorization
+const getIdentificate = ({Login, password}) => {
+  let login = 'spooky';
+  let passwordServ = '1234'
+  return (Login == login && password == passwordServ) ? true : false;
+}
+
+export const getUserFetch = async (user) => {
+  
+  await mockLatency();
+  return {
+    user: {
+      isAuthenticated: getIdentificate(user),
+      name: 'Spooky',
+      id: 21312421,
+    }
+  }
+}
