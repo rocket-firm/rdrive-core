@@ -31,8 +31,11 @@ const fetchLocalizationDataRequest = () => ({
 
 const fetchLocalizationDataSuccess = payload => ({
   type: types.FETCH_LOCALIZATION_DATA_SUCCESS,
-  payload,
+  payload
 });
+
+
+
 
 export const setLanguage = payload => async (dispatch) => {
   dispatch(setLanguageAction(payload));

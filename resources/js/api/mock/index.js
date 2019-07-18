@@ -152,5 +152,24 @@ export const getSchemasList = async () => {
       sortable: false,
       creatable: true,
     },
+  images: {
+    name: 'images.images',
+    fields: [
+      {
+        key: 'name',
+        name: 'images.key',
+        type: 'string',
+        sortable: true,
+        filterable: true,
+        editable: true,
+        showInList: true,
+        translatable: false
+      }
+    ],
+    display_in_admin_sidebar: false,
+    translatable: false,
+    sortable: false,
+    creatable: true
+  }  
   };
 };

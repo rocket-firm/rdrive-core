@@ -7,7 +7,7 @@ class SelectChangeContainer extends Component {
     
     render() {
         const {setLanguage} = this.props
-        console.dir(setLanguage)
+        
         return (
             <Select {...this.props} changeFunc = {(val) => setLanguage(val)} />
         )

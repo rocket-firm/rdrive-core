@@ -169,11 +169,11 @@ const Sidebar = ({
 
     <SidebarLinkListUI>
       {
-          Object.values(schemas).map((item, key) => (
+          Object.values(schemas).map((item, key) => { return (
             <SidebarListItemUI key={key}>
               <LinkUI to="#">{item.name}</LinkUI>
             </SidebarListItemUI>
-          ))
+          )})
         }
       {data && data.map((item, idx) => {
         const { name, dataItem } = item;
@@ -201,7 +201,7 @@ const Sidebar = ({
     <SidebarFooterUI>
       <ButtonPlainUI>
         {/* <i className="icon-delete" /> */}
-        {t('common.adsasdsad', 'kahsdkjahdkjhahd')}
+        {t('common.go_to_site', 'Go_to_site')}
       </ButtonPlainUI>
 
       <ButtonPlainUI>
@@ -210,11 +210,11 @@ const Sidebar = ({
       </ButtonPlainUI>
       <ButtonPlainUI>
         {/* <i className="icon-gear" /> */}
-          Настройки
+          {t('common.settings', 'Settings')}
       </ButtonPlainUI>
       <ButtonPlainUI>
         {/* <i className="icon-question-round" /> */}
-          Раздел помощи
+          {t('common.help', 'Help')}
       </ButtonPlainUI>
       <figure className="sidebar__footer__signature">
         <H size="3" bold>
