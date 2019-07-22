@@ -78,23 +78,23 @@ export const getSettings = async () => {
   return {
     en: {
       common: {
-        site_uri: 'https://rocketfirm.com/',
-        site_logo: logo,
-        site_name: 'RDrive',
+        siteUri: 'https://rocketfirm.com/',
+        siteLogo: logo,
+        siteName: 'RDrive',
       },
     },
     ru: {
       common: {
-        site_uri: 'https://rocketfirm.com/',
-        site_logo: logo,
-        site_name: 'RDrive',
+        siteUri: 'https://rocketfirm.com/',
+        siteLogo: logo,
+        siteName: 'RDrive',
       },
     },
     kk: {
       common: {
-        site_uri: 'https://rocketfirm.com/',
-        site_logo: logo,
-        site_name: 'RDrive',
+        siteUri: 'https://rocketfirm.com/',
+        siteLogo: logo,
+        siteName: 'RDrive',
       },
     },
   };
@@ -152,5 +152,43 @@ export const getSchemasList = async () => {
       sortable: false,
       creatable: true,
     },
+  images: {
+    name: 'images.images',
+    fields: [
+      {
+        key: 'name',
+        name: 'images.key',
+        type: 'string',
+        sortable: true,
+        filterable: true,
+        editable: true,
+        showInList: true,
+        translatable: false
+      }
+    ],
+    display_in_admin_sidebar: false,
+    translatable: false,
+    sortable: false,
+    creatable: true
+  }  
   };
 };
+
+// for authorization
+const getIdentificate = ({Login, password}) => {
+  let login = 'spooky';
+  let passwordServ = '1234'
+  return (Login == login && password == passwordServ) ? true : false;
+}
+
+export const getUserFetch = async (user) => {
+  
+  await mockLatency();
+  return {
+    user: {
+      isAuthenticated: getIdentificate(user),
+      name: 'Spooky',
+      id: 21312421,
+    }
+  }
+}

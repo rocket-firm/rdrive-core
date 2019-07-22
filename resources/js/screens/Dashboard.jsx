@@ -1,11 +1,19 @@
 import React from 'react';
-import DashboardLayoutContainer from 'containers/DashboardLayoutContainer'
-import Layout from 'components/Layout'
+import Layout from 'components/ui/Layout';
+import Sidebar from 'components/ui/Sidebar';
 
-export default () => (
-  <DashboardLayoutContainer>
-    <Layout>
-      <h1>Dashboard</h1>
+export default ({ settings, schemas }) => (
+  <Layout>
+    <Layout width="250px" height="100vh">
+      {
+        settings && schemas
+        && (
+        <Sidebar
+          settings={settings}
+          schemas={schemas}
+        />
+        )
+      }
     </Layout>
-  </DashboardLayoutContainer>
+  </Layout>
 );

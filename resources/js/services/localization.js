@@ -17,23 +17,24 @@ export const getLanguage = () => (
 );
 
 export const getLanguages = () => (
-  store.getState().localizations.languages_list
+  store.getState().localizations.languagesList
 );
 
 export const getLocalizationData = () => (
-  store.getState().localizations.localizations_data
+  store.getState().localizations.localizationsData
 );
 
-const collectMissingData = ({ group, key }) => {
+const collectMissingData = ({ group, key, defaultValue }) => {
   if (!missingTranslations[group]) {
     missingTranslations[group] = {};
   }
-  missingTranslations[group][key] = key;
+  missingTranslations[group][key] = defaultValue;
 };
 
-export const t = (text) => {
+export const t = (text, defaultValue) => {
   const lang = getLanguage();
   const data = getLocalizationData();
+
   if (!data) { return '...'; }
   const dataObject = data[lang] || {};
   const [group, key] = text.split('.');
@@ -41,9 +42,9 @@ export const t = (text) => {
   if (value) {
     return value;
   }
-  collectMissingData({ group, key });
+  collectMissingData({ group, key, defaultValue });
   missingTranslationsSubject.next({});
-  return key;
+  return defaultValue;
 };
 
 export const sendMissedLocalizations = async () => {

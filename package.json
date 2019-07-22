@@ -11,10 +11,11 @@
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "lint": "npx eslint ./resources/js --fix"
+    "lint": "npx eslint --ext .jsx --ext .js ./resources/js --fix"
   },
   "dependencies": {
     "cross-env": "^5.2.0",
+    "flatpickr": "^4.6.1",
     "history": "^4.9.0",
     "laravel-mix": "^4.0.15",
     "react": "^16.8.6",
@@ -24,6 +25,7 @@
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
+    "redux-form": "^8.2.4",
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.5.2",
     "styled-components": "^4.2.0"
