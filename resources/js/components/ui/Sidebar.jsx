@@ -181,9 +181,9 @@ const Sidebar = (
 
     <SidebarLinkListUI>
       {
-          Object.values(schemas).map((item, key) => { return (
+          Object.entries(schemas).map(([key, item]) => { return (
             <SidebarListItemUI key={key}>
-              <LinkUI to="#">{item.name}</LinkUI>
+              <Link to={`/models/${key}`}>{item.name}</Link>
             </SidebarListItemUI>
           )})
         }

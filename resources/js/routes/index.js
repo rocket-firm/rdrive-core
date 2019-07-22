@@ -6,6 +6,7 @@ import { history } from 'services';
 import Auth from 'containers/Authorization';
 import DashboardScreenContainer from 'containers/DashboardScreenContainer';
 import Kit from 'screens/Kit';
+import TableScreenContainer from '../containers/TableScreenContainer';
 
 
 export default () => (
@@ -14,6 +15,7 @@ export default () => (
       <Route exact path="/login/" component={Auth} />
       <Route exact path="/kit/" component={Kit} />
       <Route exact path="/dashboard/" component={DashboardScreenContainer} />
+      <Route exact path="/models/:schema" component={TableScreenContainer} />
     </Switch>
   </Router>
 );

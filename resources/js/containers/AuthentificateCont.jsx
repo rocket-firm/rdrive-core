@@ -8,7 +8,7 @@ export default  class AuthentificateCont extends Component {
     constructor(props) {
         super(props)
         const {history} = props;
-        authenticate() ? history.push('/dashboard') : history.push('/login')
+        !authenticate() && history.push('/login')
     }
 }
 

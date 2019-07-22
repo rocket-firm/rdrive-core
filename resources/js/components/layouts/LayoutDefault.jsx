@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SidebarContainer from 'components/ui/Sidebar';
 
 const Container = styled.div`
     width: 100%;
@@ -18,10 +19,10 @@ const LayoutDefault = (props) => {
     return (
         <Container>
             <SidebarContUi>
-                {props.children[0]}
+                <SidebarContainer />
             </SidebarContUi>
             <MainContUi>
-                {props.children[1]}
+                {props.children}
             </MainContUi>
         </Container>
     )
