@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { t } from 'services';
 import Button from './Button';
 import H from './H';
 import SelectChangeContainer from '../../containers/SelectChangeContainer';
+import localizations from '../../store/localizations';
 
 const SidebarUI = styled.nav`
   color: #3d4671;
@@ -138,20 +140,30 @@ const SidebarFooterUI = styled.div`
     margin: 22px 0 0 0;
   }
 `;
-const Sidebar = ({
+const Sidebar = (
+  {
   settings: {
     common: {
       siteLogo,
       siteName,
       siteUri,
-    },
+    }, 
+  } = {
+    common: {
+      siteLogo: null,
+      siteName: null,
+      siteUri: null
+    }
   },
   schemas,
   // title,
   // children,
   data,
   // opened,
-}) => (
+}
+) => {
+  return (
+    
   <SidebarUI>
     <BrandUI>
       <figure>
@@ -227,5 +239,15 @@ const Sidebar = ({
       </figure>
     </SidebarFooterUI>
   </SidebarUI>
-);
-export default Sidebar;
+)
+};
+
+export default connect((
+  {localizations: {language},
+  settings,
+  schemas}
+) => ({
+  language,
+  settings: settings.settings[language],
+  schemas
+}), null)(Sidebar)

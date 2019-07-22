@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import {Field, reduxForm, formValueSelector} from 'redux-form';
 import { bindActionCreators } from 'redux';
 import {getUserAuthenticate} from 'store/authorization';
+import AuthentificateCont from './AuthentificateCont';
 
-class Authorization extends Component {
+class Authorization extends AuthentificateCont {
     
     sendUserData(e) {
         const {getUserAuthenticate} = this.props;
@@ -12,8 +13,7 @@ class Authorization extends Component {
     };
     shouldComponentUpdate(nextProps) {
         const {user} = nextProps;
-        console.log(user)
-        if(user.user.isAuthenticated) {
+        if(user.isAuthenticated) {
             nextProps.history.push('/dashboard')
         }
         return true

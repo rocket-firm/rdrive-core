@@ -35,6 +35,7 @@ const savedStore = loadStore();
 
 const fieldsForSave = [
   'localizations.language',
+  'user'
 ];
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));

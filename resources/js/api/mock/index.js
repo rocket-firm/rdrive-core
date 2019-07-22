@@ -184,11 +184,12 @@ const getIdentificate = ({Login, password}) => {
 export const getUserFetch = async (user) => {
   
   await mockLatency();
-  return {
-    user: {
-      isAuthenticated: getIdentificate(user),
-      name: 'Spooky',
-      id: 21312421,
-    }
+  if (getIdentificate(user)) {
+    return {
+        name: 'Spooky',
+        id: 21312421,
+    }  
+  } else {
+    throw new Error("ALTYNBOI")
   }
 }
