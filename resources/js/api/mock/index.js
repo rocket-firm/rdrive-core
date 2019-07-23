@@ -193,3 +193,59 @@ export const getUserFetch = async (user) => {
     throw new Error("ALTYNBOI")
   }
 }
+
+// for models
+
+export const getModelsFetch = async (name) => {
+  await mockLatency()
+  const data = {
+     settings: [
+       {
+         group: 1,
+         key: 'set',
+         name: 'User',
+         type: 'string'
+       },
+       {
+        group: 2,
+        key: 'set',
+        name: 'Piano',
+        type: 'string'
+      },
+      {
+        group: 3,
+        key: 'set',
+        name: 'Vid',
+        type: 'string'
+      },
+      {
+        group: 4,
+        key: 'set',
+        name: 'Allow',
+        type: 'string'
+      }
+     ],
+     images: [
+       {
+         name: 'img1'
+       },
+       {
+         name: 'img2'
+       },
+       {
+         name: 'img3'
+       }
+     ]
+  }
+
+  switch(name) {
+    case 'settings':
+      return data.settings;
+    
+    case 'images':
+      return data.images;
+
+    default:
+      return data
+  }
+} 

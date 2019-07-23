@@ -4,5 +4,6 @@ export const {
   postMissedTranslations,
   getSettings,
   getSchemasList,
-  getUserFetch
+  getUserFetch,
+  getModelsFetch
 } = require('./mock');

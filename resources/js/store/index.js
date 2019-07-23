@@ -13,13 +13,15 @@ import localizations from './localizations';
 import settings from './settings';
 import schemas from './schemas';
 import user from './authorization';
+import models from './models';
 
 const reducers = combineReducers({
   localizations,
   settings,
   schemas,
   user,
-  form: formReducer
+  form: formReducer,
+  models
 });
 
 const rootReducer = (state, action) => {

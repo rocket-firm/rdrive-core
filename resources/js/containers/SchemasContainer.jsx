@@ -27,7 +27,9 @@ export default connect(
     localizations: { language },
     settings: { settings },
     schemas,
+    models,
   }) => ({
+    models,
     settings: settings[language],
     schemas,
   }),

@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-import {loadStore} from '../services/persistence';
-import { connect } from 'react-redux';
-import store from '../store';
+import  { Component } from 'react';
 import authenticate from '../services/authenticate';
 
 export default  class AuthentificateCont extends Component {

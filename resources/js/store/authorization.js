@@ -6,11 +6,6 @@ const types = {
     AUTHENTICATE_FAILURE: 'AUTHENTICATE_FAILURE',
 }
 
-const setCurrentUser = payload => { return ({
-    type: types.SET_USER,
-    payload
-})}
-
 const authenticateSuc = payload => ({
     type: types.AUTHENTICATE_SUCCESS,
     payload
