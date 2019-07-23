@@ -17,12 +17,16 @@ Route::group([
         Route::get('/', ['uses' => 'SchemaController@index', 'as' => 'index']);
     });
 
-    // Localizations
+    // Translations
     Route::group([
-        'as' => 'localizations.',
-        'prefix' => 'localizations',
+        'as' => 'translations.',
+        'prefix' => 'translations',
     ], function () {
-        Route::get('locales', ['uses' => 'LocalizationController@getLocales', 'as' => 'locales']);
+        Route::get('locales', ['uses' => 'TranslationController@getLocales', 'as' => 'locales']);
     });
+
+    Route::apiResources([
+        'translations' => 'TranslationController'
+    ]);
 
 });

@@ -3,7 +3,6 @@
 namespace Rocketfirm\Rdrive\Console;
 
 use Illuminate\Console\Command;
-use Rocketfirm\Rdrive\Providers\RdriveServiceProvider;
 use Symfony\Component\Console\Input\InputOption;
 
 class InstallCommand extends Command
@@ -44,26 +43,65 @@ class InstallCommand extends Command
 
         if ($this->option('with-dummy')) {
             $this->info('Publishing dummy content');
-            $this->call('vendor:publish', [
-                '--tag' => [
-                    'rdrive-dummy-seeds',
-                    'rdrive-dummy-migrations',
-                    'rdrive-dummy-models'
-                ],
-                '--force' => $this->option('force')
-            ]);
+            $this->call('vendor:publish', ['--tag' => ['rdrive-dummy'], '--force' => $this->option('force')]);
 
-//            $this->info('Seeding dummy data');
-//            $this->seed('VoyagerDummyDatabaseSeeder');
+            $this->setDummyConfigs();
         }
 
         /**
-         * Publish config from `dimsav/laravel-translatable` package
+         * Publish config from `Astrotomic/laravel-translatable` package
          */
         $this->info('Publishing the Translatable config file');
         $this->call('vendor:publish', ['--tag' => ['translatable']]);
 
-        $this->info('Migrating the database tables into your application');
-        $this->call('migrate', ['--force' => $this->option('force')]);
+        /**
+         * Publish config and migrations from `spatie/laravel-translation-loader` package
+         */
+        $this->info('Publishing the Translation loader config and migrations files');
+        $this->call('vendor:publish', ['--tag' => ['migrations', 'config'], '--provider' => 'Spatie\TranslationLoader\TranslationServiceProvider']);
+
+        /**
+         * Publish languages from `andrey-helldar/laravel-lang-publisher` package
+         */
+        $this->info('Publishing languages');
+        $this->call('trans:publish', ['locale' => 'en', '--force' => $this->option('force')]);
+        $this->call('trans:publish', ['locale' => 'ru', '--force' => $this->option('force')]);
+        $this->call('trans:publish', ['locale' => 'kk', '--force' => $this->option('force')]);
+
+        /**
+         * Publish config and migrations from `spatie/laravel-permission` package
+         */
+        $this->info('Publishing the Permissions migrations files');
+        $this->call('vendor:publish', ['--tag' => ['migrations', 'config'], '--provider' => 'Spatie\Permission\PermissionServiceProvider']);
+
+        $this->setLocales();
+    }
+
+    /**
+     * Set application locales
+     */
+    private function setLocales()
+    {
+        $defaultLocales = ['en', 'ru', 'kk'];
+        $currentLocales = \Config::get('translatable.locales');
+        if ($defaultLocales !== $currentLocales) {
+            \Config::write('translatable.locales', $defaultLocales);
+        }
+    }
+
+    /**
+     * Set dummy configs
+     */
+    private function setDummyConfigs()
+    {
+        $dummySchemas = [
+            \App\Models\Country::class
+        ];
+
+        $currentSchemas = \Config::get('rdrive.schemas');
+
+        $schemas = array_unique(array_merge($currentSchemas, $dummySchemas));
+
+        \Config::write('rdrive.schemas', $schemas);
     }
 }

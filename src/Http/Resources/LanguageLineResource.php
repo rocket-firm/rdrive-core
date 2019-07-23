@@ -3,9 +3,9 @@
 namespace Rocketfirm\Rdrive\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Rocketfirm\Rdrive\Models\Localization;
+use Spatie\TranslationLoader\LanguageLine;
 
-class LocalizationResource extends JsonResource
+class LanguageLineResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,7 @@ class LocalizationResource extends JsonResource
     public function toArray($request)
     {
         /**
-         * @var $this Localization
+         * @var $this LanguageLine
          */
         return array_merge(parent::toArray($request), []);
     }

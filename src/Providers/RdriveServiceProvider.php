@@ -52,16 +52,12 @@ class RdriveServiceProvider extends AuthServiceProvider
             'rdrive-assets' => [
                 "{$publishablePath}/public" => public_path('vendor/rdrive'),
             ],
-            'rdrive-dummy-seeds' => [
+            'rdrive-dummy' => [
                 "{$publishablePath}/dummy/database/seeds" => database_path('seeds'),
                 "{$publishablePath}/dummy/database/factories" => database_path('factories'),
-            ],
-            'rdrive-dummy-migrations' => [
                 "{$publishablePath}/dummy/database/migrations" => database_path('migrations'),
-            ],
-            'rdrive-dummy-models' => [
-                "{$publishablePath}/dummy/app/Models" => app_path('Models'),
-            ],
+                "{$publishablePath}/dummy/app" => app_path()
+            ]
         ];
 
         foreach ($publishable as $group => $paths) {

@@ -2,7 +2,7 @@
 
 namespace Rocketfirm\Rdrive\Http\Resources;
 
-use Dimsav\Translatable\Translatable;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\Resource;
 
@@ -43,6 +43,7 @@ class SchemaResource extends Resource
                 'filterable' => !empty($value['filterable']) ? $value['filterable'] : false,
                 'editable' => isset($value['editable']) ? $value['editable'] : true,
                 'showInList' => isset($value['showInList']) ? $value['showInList'] : false,
+                'translatable' => false,
             ];
             if (!empty($value['foreign_model'])) {
                 $attributes['foreign_model'] = $value['foreign_model'];
@@ -63,10 +64,8 @@ class SchemaResource extends Resource
                 $attributes['options'] = $value['options'];
             }
 
-            if (!is_null($this->translatable) && in_array($key, $this->translatable)) {
+            if (isset($this->translatedAttributes) && in_array($key, $this->translatedAttributes)) {
                 $attributes['translatable'] = true;
-            } else {
-                $attributes['translatable'] = false;
             }
 
             $fields[] = $attributes;
@@ -74,8 +73,7 @@ class SchemaResource extends Resource
 
         $isTranslatable = in_array(Translatable::class, class_uses($this->resource));
 
-        /** @var Model $this */
-        return array_merge(parent::toArray($request), [
+        return [
             $tableName => [
                 'name' => $schemaName,
                 'fields' => $fields,
@@ -84,6 +82,6 @@ class SchemaResource extends Resource
                 'sortable' => isset($this->sortable) ? $this->sortable : false,
                 'creatable' => isset($this->creatable) ? $this->creatable : true,
             ]
-        ]);
+        ];
     }
 }

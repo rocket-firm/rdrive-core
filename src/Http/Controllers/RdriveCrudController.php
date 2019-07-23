@@ -2,7 +2,6 @@
 
 namespace Rocketfirm\Rdrive\Http\Controllers;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Rocketfirm\Rdrive\Models\RdriveBaseModel;
@@ -19,18 +18,6 @@ class RdriveCrudController extends Controller
      */
     protected $modelResourceClass;
 
-    /**
-     * BaseController constructor.
-     */
-    public function __construct()
-    {
-        if (!app()->isLocal()) {
-            $this->middleware('client');
-        }
-
-        $this->middleware('auth:api')->only(['store', 'update', 'destroy', 'toggle', 'move']);
-    }
-
     public function index(Request $request)
     {
         $lang = $request->header('Language', 'ru');
@@ -40,54 +27,11 @@ class RdriveCrudController extends Controller
         return $this->modelResourceClass::collection($query->paginate());
     }
 
-    public function show($id)
-    {
-        $model = $this->getModel($id);
-
-        return $this->serializeModel($model);
-    }
-
-
     public function showBySlug($slug)
     {
         $model = $this->getModelByAttribute('slug', $slug);
 
         return $this->serializeModel($model);
-    }
-
-    public function destroy($id)
-    {
-        $this->authorize('isAdmin');
-
-        $this->getModel($id)->delete();
-
-        return response('Deleted');
-    }
-
-    protected function getLangQuery($lang, $orderByCreatedAt = true)
-    {
-        $modelClass = $this->modelClass;
-        $query = $modelClass::query();
-
-        if (isset($modelClass::$translatableRelations)
-            && is_array($modelClass::$translatableRelations)
-            && !empty($modelClass::$translatableRelations)) {
-            foreach ($modelClass::$translatableRelations as $relation) {
-                /**
-                 * @var Builder $query
-                 */
-                $query->with([$relation => function ($newQuery) use ($lang) {
-                    $newQuery->lang($lang);
-                }]);
-            }
-        }
-
-        // TODO: move orderBy to another place maybe?
-        if ($orderByCreatedAt) {
-            $query = $query->orderBy('created_at', 'DESC');
-        }
-
-        return $query;
     }
 
     protected function getModel($id)

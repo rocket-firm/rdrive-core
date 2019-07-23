@@ -14,21 +14,50 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Finally, we can install Rdrive. You can choose to install Rdrive with dummy data or without the dummy data. The dummy data will include 1 admin account (if no users already exist), 1 demo page, 4 demo posts, 2 categories and 7 settings.  
+In `config/app.php` (Laravel) you should replace Laravel's translation service provider
 
-To install Rdrive without dummy data simply run:
-```shell
-php artisan rdrive:install
+```php
+Illuminate\Translation\TranslationServiceProvider::class,
 ```
 
-If you prefer installing it with the dummy data run the following commands:
+by the one included in this package:
+
+```php
+Spatie\TranslationLoader\TranslationServiceProvider::class,
+```
+
+Finally, we can install Rdrive. You can choose to install Rdrive with dummy data or without the dummy data. The dummy data will include 1 admin account (if no users already exist), 1 demo page, 4 demo posts, 2 categories and 7 settings.  
+
+<details>
+  <summary>Install without dummy data</summary>
+  
+```shell
+php artisan rdrive:install
+  
+php artisan migrate
+```
+</details>
+
+<details>
+  <summary>Install with dummy data</summary>
+  
 ```shell
 php artisan rdrive:install --with-dummy
+
+php artisan migrate
 
 composer dump-autoload
 
 php artisan db:seed --class=RdriveDummyDatabaseSeeder
 ```
+
+Then add these dummy routes in your `api.php` file:
+```php
+Route::apiResources(['countries' => 'API\Admin\CountryController']);
+```
+</details>
+
+---
 
 And we're all good to go!  
 Start up a local development server with php artisan serve And, visit the URL http://localhost:8000/admin in your browser.  
