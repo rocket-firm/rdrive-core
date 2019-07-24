@@ -6,7 +6,7 @@ use Rocketfirm\Rdrive\Http\Requests\LanguageLineRequest;
 use Rocketfirm\Rdrive\Http\Resources\LanguageLineResource;
 use Spatie\TranslationLoader\LanguageLine;
 
-class TranslationController extends RdriveBaseController
+class LocalizationController extends RdriveBaseController
 {
     /**
      * Display a listing of the resource.
