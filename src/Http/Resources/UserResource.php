@@ -19,6 +19,12 @@ class UserResource extends JsonResource
          * @var $this LanguageLine
          */
         return array_merge(parent::toArray($request), [
+            'roles' => array_map(function ($role) {
+                return $role['name'];
+            }, $this->roles->toArray()),
+            'permissions' => array_map(function ($permission) {
+                return $permission['name'];
+            }, $this->getAllPermissions()->toArray()),
         ]);
     }
 }
