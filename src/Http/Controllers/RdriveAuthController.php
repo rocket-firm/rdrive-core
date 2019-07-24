@@ -17,7 +17,6 @@ class RdriveAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
-            auth()->user()->assignRole('admin');
             if (auth()->user()->hasRole('admin')) {
                 $token = auth()->user()->createToken('Laravel Password Grant Client')->accessToken;
                 return response(['token' => $token]);
