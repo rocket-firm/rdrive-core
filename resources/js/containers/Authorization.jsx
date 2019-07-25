@@ -20,12 +20,12 @@ class Authorization extends AuthentificateCont {
     }
     render() {
         const {user, handleSubmit} = this.props;
-       
+        console.dir(this.props)
         return (
             <form onSubmit={handleSubmit(this.sendUserData.bind(this))}>
                 <div>
-                    <label htmlFor="Login">Login</label>
-                    <Field name="Login" component="input" type="text"/>
+                    <label htmlFor="email">e-mail</label>
+                    <Field name="email" component="input" type="email"/>
                 </div>
                 <div>
                     <label htmlFor="password">password</label>
@@ -39,10 +39,10 @@ class Authorization extends AuthentificateCont {
 
 Authorization = reduxForm({
     // a unique name for the form
-    form: 'user'
+    form: 'login'
 })(Authorization)
 
-const selector = formValueSelector('user') 
+const selector = formValueSelector('login') 
 
 Authorization = connect(
     state => {

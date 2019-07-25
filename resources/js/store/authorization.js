@@ -1,4 +1,5 @@
 import {getUserFetch} from 'api'
+import {stopSubmit} from 'redux-form'
 
 const types = {
     SET_USER: 'SET_USER',
@@ -21,13 +22,25 @@ export const initialState = {
     user: {}
 }
 
-export const getUserAuthenticate = (user) => async (dispatch) => {
-    let data
+export const getUserAuthenticate = (e) => async (dispatch) => {
     try {
-         data = await getUserFetch(user)
-        dispatch(authenticateSuc(data))
+        const formData = new FormData();
+    
+        formData.append('email', e.email);
+        formData.append('password', e.password);
+        let res = await fetch('/api/admin/auth/login', {
+            method: 'POST',
+            body: formData
+        })
+        if(res.status != 200) throw new Error('not corrected');
+        let {token} = await res.json();
+        dispatch(authenticateSuc(token))
     } catch (err) {
-        dispatch(authenticateErr(data))
+        console.log(err)
+        dispatch(stopSubmit('login', {
+            email: 'altynboi',
+            password: 'altynebr'
+        }))
     }
 }
 
@@ -42,7 +55,7 @@ export default (state=initialState, {type, payload} ) => {
             return {
                 ...state,
                 isAuthenticated: true,
-                user: payload
+                token: payload
             }
         case types.AUTHENTICATE_FAILURE: 
             return {
