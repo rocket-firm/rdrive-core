@@ -6,7 +6,7 @@ Route::group([
     'as' => 'api.admin.',
     'prefix' => 'api/admin',
     'namespace' => $namespace,
-    'middleware' => 'api'
+    'middleware' => ['api', 'localization']
 ], function () {
     // Auth
     Route::group([
@@ -33,16 +33,16 @@ Route::group([
             Route::get('/', ['uses' => 'SchemaController@index', 'as' => 'index']);
         });
 
-        // Translations
+        // Localizations
         Route::group([
-            'as' => 'translations.',
-            'prefix' => 'translations',
+            'as' => 'localizations.',
+            'prefix' => 'localizations',
         ], function () {
-            Route::get('locales', ['uses' => 'TranslationController@getLocales', 'as' => 'locales']);
+            Route::get('locales', ['uses' => 'LocalizationController@getLocales', 'as' => 'locales']);
         });
 
         Route::apiResources([
-            'translations' => 'TranslationController'
+            'localizations' => 'LocalizationController'
         ]);
     });
 });

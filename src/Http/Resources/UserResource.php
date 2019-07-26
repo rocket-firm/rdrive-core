@@ -3,7 +3,6 @@
 namespace Rocketfirm\Rdrive\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Spatie\TranslationLoader\LanguageLine;
 
 class UserResource extends JsonResource
 {
@@ -16,7 +15,7 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         /**
-         * @var $this LanguageLine
+         * @var $this App\User
          */
         return array_merge(parent::toArray($request), [
             'roles' => array_map(function ($role) {
