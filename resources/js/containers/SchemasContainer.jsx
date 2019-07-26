@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSettings } from 'store/settings';
 import { fetchSchemasList } from 'store/schemas';
-import SideBar from '../components/ui/Sidebar';
 
 class SchemasContainer extends Component {
     componentWillMount() {

@@ -152,61 +152,42 @@ export const getSchemasList = async () => {
       sortable: false,
       creatable: true,
     },
-  images: {
-    name: 'images.images',
-    fields: [
-      {
-        key: 'name',
-        name: 'images.key',
-        type: 'string',
-        sortable: true,
-        filterable: true,
-        editable: true,
-        showInList: true,
-        translatable: false
-      }
-    ],
-    display_in_admin_sidebar: false,
-    translatable: false,
-    sortable: false,
-    creatable: true
-  }  
+    images: {
+      name: 'images.images',
+      fields: [
+        {
+          key: 'name',
+          name: 'images.key',
+          type: 'string',
+          sortable: true,
+          filterable: true,
+          editable: true,
+          showInList: true,
+          translatable: false
+        }
+      ],
+      display_in_admin_sidebar: false,
+      translatable: false,
+      sortable: false,
+      creatable: true
+    }
   };
 };
 
-// for authorization
-const getIdentificate = ({Login, password}) => {
-  let login = 'spooky';
-  let passwordServ = '1234'
-  return (Login == login && password == passwordServ) ? true : false;
-}
-
-export const getUserFetch = async (user) => {
-  
-  await mockLatency();
-  if (getIdentificate(user)) {
-    return {
-        name: 'Spooky',
-        id: 21312421,
-    }  
-  } else {
-    throw new Error("ALTYNBOI")
-  }
-}
 
 // for models
 
 export const getModelsFetch = async (name) => {
   await mockLatency()
   const data = {
-     settings: [
-       {
-         group: 1,
-         key: 'set',
-         name: 'User',
-         type: 'string'
-       },
-       {
+    settings: [
+      {
+        group: 1,
+        key: 'set',
+        name: 'User',
+        type: 'string'
+      },
+      {
         group: 2,
         key: 'set',
         name: 'Piano',
@@ -224,24 +205,24 @@ export const getModelsFetch = async (name) => {
         name: 'Allow',
         type: 'string'
       }
-     ],
-     images: [
-       {
-         name: 'img1'
-       },
-       {
-         name: 'img2'
-       },
-       {
-         name: 'img3'
-       }
-     ]
+    ],
+    images: [
+      {
+        name: 'img1'
+      },
+      {
+        name: 'img2'
+      },
+      {
+        name: 'img3'
+      }
+    ]
   }
 
-  switch(name) {
+  switch (name) {
     case 'settings':
       return data.settings;
-    
+
     case 'images':
       return data.images;
 

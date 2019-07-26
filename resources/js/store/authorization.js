@@ -1,10 +1,12 @@
-import {getUserFetch} from 'api'
-import {stopSubmit} from 'redux-form'
+import { getUserLogin, logoutUser } from 'api'
+import { stopSubmit } from 'redux-form'
+import {history} from 'services/history'
 
 const types = {
     SET_USER: 'SET_USER',
     AUTHENTICATE_SUCCESS: 'AUTHENTICATE_SUCCESS',
     AUTHENTICATE_FAILURE: 'AUTHENTICATE_FAILURE',
+    AUTHENTICATE_LOGOUT: 'AUTHENTICATE_LOGOUT'
 }
 
 const authenticateSuc = payload => ({
@@ -17,51 +19,66 @@ const authenticateErr = payload => ({
     payload
 })
 
+const authenticateLogout = () => ({
+    type: types.AUTHENTICATE_LOGOUT
+})
+
 export const initialState = {
     isAuthenticated: false,
-    user: {}
+    user: {},
+    token: null
 }
 
 export const getUserAuthenticate = (e) => async (dispatch) => {
     try {
-        const formData = new FormData();
-    
-        formData.append('email', e.email);
-        formData.append('password', e.password);
-        let res = await fetch('/api/admin/auth/login', {
-            method: 'POST',
-            body: formData
-        })
-        if(res.status != 200) throw new Error('not corrected');
-        let {token} = await res.json();
+        let res = await getUserLogin(e);
+        if (res.status != 200) throw new Error('not corrected');
+        let { token } = await res.json();
         dispatch(authenticateSuc(token))
     } catch (err) {
-        console.log(err)
         dispatch(stopSubmit('login', {
-            email: 'altynboi',
-            password: 'altynebr'
+            email: 'incorrect',
+            password: 'incorrect'
         }))
     }
 }
 
-export default (state=initialState, {type, payload} ) => {
+export const logoutUserAuth = (token) => async(dispatch) => {
+    try {
+        let res = await logoutUser(token);
+        if(res.status != 200) throw new Error('cannot logout')
+        dispatch(authenticateLogout())
+        history.replace('/login')
+    } catch (err) {
+        alert(err)
+    }
+}
+
+export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case types.SET_USER: 
+        case types.SET_USER:
             return {
                 ...state,
                 user: payload.user
             }
-        case types.AUTHENTICATE_SUCCESS: 
+        case types.AUTHENTICATE_SUCCESS:
             return {
                 ...state,
                 isAuthenticated: true,
                 token: payload
             }
-        case types.AUTHENTICATE_FAILURE: 
+        case types.AUTHENTICATE_FAILURE:
             return {
                 ...state,
                 isAuthenticated: false,
-                user: initialState.user
+                token: null
+            }
+
+        case types.AUTHENTICATE_LOGOUT:
+            return {
+                ...state,
+                isAuthenticated: false,
+                token: null
             }
         default:
             return state;

@@ -1,36 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import {Field, reduxForm, formValueSelector} from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import {getUserAuthenticate} from 'store/authorization';
+import { getUserAuthenticate } from 'store/authorization';
+import LoginInput from 'components/ui/LoginInput';
 import AuthentificateCont from './AuthentificateCont';
 
 class Authorization extends AuthentificateCont {
-    
+
     sendUserData(e) {
-        const {getUserAuthenticate} = this.props;
+        const { getUserAuthenticate } = this.props;
         getUserAuthenticate(e)
     };
     shouldComponentUpdate(nextProps) {
-        const {user} = nextProps;
-        if(user.isAuthenticated) {
+        const { user } = nextProps;
+        if (user.isAuthenticated) {
             nextProps.history.push('/dashboard')
         }
         return true
     }
     render() {
-        const {user, handleSubmit} = this.props;
-        console.dir(this.props)
+        const { handleSubmit } = this.props;
         return (
             <form onSubmit={handleSubmit(this.sendUserData.bind(this))}>
-                <div>
-                    <label htmlFor="email">e-mail</label>
-                    <Field name="email" component="input" type="email"/>
-                </div>
-                <div>
-                    <label htmlFor="password">password</label>
-                    <Field name="password" component="input" type="password" />
-                </div>
+                <Field name="email" component={LoginInput} type="email" label="email" />
+                <Field name="password" component={LoginInput} type="password" label="password" />
                 <button type="submit">Submit</button>
             </form>
         )
@@ -42,24 +36,26 @@ Authorization = reduxForm({
     form: 'login'
 })(Authorization)
 
-const selector = formValueSelector('login') 
+const selector = formValueSelector('login')
 
 Authorization = connect(
     state => {
-      // or together as a group
-      const { Login, password } = selector(state, 'Login', 'password')
-      return {
-        Login,
-        password
-      }
+        // or together as a group
+        const { email, password } = selector(state, 'email', 'password')
+        return {
+            email,
+            password
+        }
     }
-  )(Authorization)
+)(Authorization)
 
 export default connect(({
     user
-}) => {return ({
-    user
-})}, 
+}) => {
+    return ({
+        user
+    })
+},
     dispatch => bindActionCreators({
         getUserAuthenticate
     }, dispatch)

@@ -7,6 +7,7 @@ import Button from './Button';
 import H from './H';
 import SelectChangeContainer from '../../containers/SelectChangeContainer';
 import localizations from '../../store/localizations';
+import LogoutContainer from '../../containers/LogoutContainer';
 
 const SidebarUI = styled.nav`
   color: #3d4671;
@@ -227,6 +228,9 @@ const Sidebar = (
       <ButtonPlainUI>
         {/* <i className="icon-question-round" /> */}
           {t('common.help', 'Help')}
+      </ButtonPlainUI>
+      <ButtonPlainUI>
+        <LogoutContainer/>
       </ButtonPlainUI>
       <figure className="sidebar__footer__signature">
         <H size="3" bold>
