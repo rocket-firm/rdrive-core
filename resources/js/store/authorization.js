@@ -1,6 +1,6 @@
 import { getUserLogin, logoutUser } from 'api'
 import { stopSubmit } from 'redux-form'
-import {history} from 'services/history'
+import { history } from 'services'
 
 const types = {
     SET_USER: 'SET_USER',
@@ -43,10 +43,10 @@ export const getUserAuthenticate = (e) => async (dispatch) => {
     }
 }
 
-export const logoutUserAuth = (token) => async(dispatch) => {
+export const logoutUserAuth = (token) => async (dispatch) => {
     try {
         let res = await logoutUser(token);
-        if(res.status != 200) throw new Error('cannot logout')
+        if (res.status != 200) throw new Error('cannot logout')
         dispatch(authenticateLogout())
         history.replace('/login')
     } catch (err) {

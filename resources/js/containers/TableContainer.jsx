@@ -6,13 +6,14 @@ export default class TableContainer extends Component {
         const {schema} = this.props.match.params;   
         const {getModels} = this.props;
         getModels(schema);
+        console.log('componentDidmount')
     }
 
     shouldComponentUpdate(nextProps) {
         const {schema} = this.props.match.params;   
         const {getModels} = this.props;
         
-        if(schema == nextProps.schema) {
+        if(schema == nextProps.match.params.schema) {
             return false;
         } else {
             getModels(schema);
