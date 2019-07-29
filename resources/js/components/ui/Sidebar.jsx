@@ -164,7 +164,6 @@ const Sidebar = (
 }
 ) => {
   const data = schemas.data || {};
-  console.log(data) 
   return (
     
   <SidebarUI>

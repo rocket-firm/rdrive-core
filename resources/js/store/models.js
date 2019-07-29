@@ -1,14 +1,14 @@
-import {getModelsFetch} from 'api';
+import { getModelsFetch } from 'api';
 
 const types = {
     GET_MODELS: 'GET_MODELS'
 }
 
 export const initialState = {
-    models: []
+   isFetch: false
 }
 
-export const successModel = payload => {
+export const successModel = (payload) => {
     return {
         type: types.GET_MODELS,
         payload
@@ -17,17 +17,19 @@ export const successModel = payload => {
 
 export const getModels = (name) => async (dispatch) => {
     let data = await getModelsFetch(name);
-    dispatch(successModel(data))
+    console.log(name)
+    dispatch(successModel({data, name}))
 }
 
-export default (state=initialState, {type, payload}) => {
-    switch(type) {
+export default (state = initialState, { type, payload }) => {
+    switch (type) {
         case types.GET_MODELS:
             return {
                 ...state,
-                models: payload
+                [payload.name]: payload.data,
+                isFetch: true
             }
-        default: 
+        default:
             return {
                 ...state
             }

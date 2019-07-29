@@ -18,7 +18,6 @@ export const fetchSchemasSuccess = payload => ({
 export const fetchSchemasList = () => async (dispatch) => {
   dispatch(fetchSchemasRequest());
   const data = await getSchemasList();
-  console.log(data)
   dispatch(fetchSchemasSuccess(schemaAdapter(data)));
 };
 

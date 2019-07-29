@@ -2,12 +2,12 @@ export const {
   getLanguagesList,
   getLocalizationData,
   postMissedTranslations,
-  getSettings,
-  getModelsFetch
+  getSettings
 } = require('./mock');
 
 export const {
   getUserLogin,
   logoutUser,
-  getSchemasList
+  getSchemasList,
+  getModelsFetch
 } = require('./v1')

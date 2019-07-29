@@ -1,11 +1,9 @@
 import {fetchDecor} from 'services'
 
 export const getUserLogin = async (e) => {
-    console.log('zahodiut', fetchDecor)
     const formData = new FormData();
     formData.append('email', e.email);
     formData.append('password', e.password);
-    console.log(fetchDecor())
     let res = await fetchDecor('/api/admin/auth/login', {
         method: 'POST',
         body: formData
@@ -28,6 +26,17 @@ export const logoutUser = async () => {
 
 export const getSchemasList = async () => {
     let res = await fetchDecor('/api/admin/schemas', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    return res.json()
+}
+
+export const getModelsFetch = async (name) => {
+    let res = await fetchDecor(`/api/admin/${name}/`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',

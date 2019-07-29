@@ -5,7 +5,27 @@ import { bindActionCreators } from 'redux';
 import { getUserAuthenticate } from 'store/authorization';
 import LoginInput from 'components/ui/LoginInput';
 import AuthentificateCont from './AuthentificateCont';
+import styled from 'styled-components';
 
+const FormContainerUI = styled.div`
+    text-align: center;
+    margin-top: 20vh;
+`
+const FormUI = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const ButtonUI = styled.button`
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 0;
+    border: none;
+    text-transform: uppercase;
+    color: #FFF;
+    background-color: blue;
+    cursor: pointer;
+`
 class Authorization extends AuthentificateCont {
 
     sendUserData(e) {
@@ -22,11 +42,13 @@ class Authorization extends AuthentificateCont {
     render() {
         const { handleSubmit } = this.props;
         return (
-            <form onSubmit={handleSubmit(this.sendUserData.bind(this))}>
-                <Field name="email" component={LoginInput} type="email" label="email" />
-                <Field name="password" component={LoginInput} type="password" label="password" />
-                <button type="submit">Submit</button>
-            </form>
+            <FormContainerUI>
+                <FormUI onSubmit={handleSubmit(this.sendUserData.bind(this))}>
+                    <Field name="email" component={LoginInput} type="email" label="email" />
+                    <Field name="password" component={LoginInput} type="password" label="password" />
+                    <ButtonUI type="submit">Submit</ButtonUI>
+                </FormUI>
+            </FormContainerUI>
         )
     }
 }
