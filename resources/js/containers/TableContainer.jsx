@@ -6,7 +6,6 @@ export default class TableContainer extends Component {
         const {schema} = this.props.match.params;   
         const {getModels} = this.props;
         getModels(schema);
-        console.log('componentDidmount')
     }
 
     shouldComponentUpdate(nextProps) {
@@ -22,6 +21,7 @@ export default class TableContainer extends Component {
     }
 
     render() {
+        console.dir(this)
         const {schema} = this.props.match.params; 
         const fields = (this.props.schemas[schema]) ? this.props.schemas[schema].fields : [];
         const {models} = this.props.models;

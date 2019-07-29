@@ -142,13 +142,14 @@ const SidebarFooterUI = styled.div`
   }
 `;
 const Sidebar = (
-  {
+  { 
   settings: {
     common: {
       siteLogo,
       siteName,
       siteUri,
-    }, 
+    },
+
   } = {
     common: {
       siteLogo: null,
@@ -159,10 +160,11 @@ const Sidebar = (
   schemas,
   // title,
   // children,
-  data,
   // opened,
 }
 ) => {
+  const data = schemas.data || {};
+  console.log(data) 
   return (
     
   <SidebarUI>
@@ -188,7 +190,7 @@ const Sidebar = (
             </SidebarListItemUI>
           )})
         }
-      {data && data.map((item, idx) => {
+      {/* {data && data.map((item, idx) => {
         const { name, dataItem } = item;
         return typeof dataItem === 'string' ? (
           <SidebarListItemUI key={idx}>
@@ -208,7 +210,7 @@ const Sidebar = (
             </SidebarListItemUI>
           </Fragment>
         );
-      })}
+      })} */}
     </SidebarLinkListUI>
     <SelectChangeContainer />
     <SidebarFooterUI>

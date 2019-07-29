@@ -3,11 +3,11 @@ export const {
   getLocalizationData,
   postMissedTranslations,
   getSettings,
-  getSchemasList,
   getModelsFetch
 } = require('./mock');
 
 export const {
   getUserLogin,
-  logoutUser
+  logoutUser,
+  getSchemasList
 } = require('./v1')
