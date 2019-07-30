@@ -10,7 +10,6 @@ import {getModels} from 'store/models';
 class TableScreenContainer extends AuthentificateCont {
     
     render() {
-        console.log(this)
         return (
             <SchemasContainer>
                 <LayoutDefault>

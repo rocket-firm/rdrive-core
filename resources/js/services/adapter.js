@@ -21,3 +21,17 @@ export const modelAdapter = ({data, links, meta}, name) => {
         name
     }
 }
+
+export const modelIdAdapter = (params, data) => {
+    console.dir(params)
+    console.dir(data)
+    return {
+        [params.schema]: {
+            data: {
+                [params.id]: {
+                    ...data
+                }
+            }
+        }
+    }
+}

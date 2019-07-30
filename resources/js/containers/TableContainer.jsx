@@ -41,7 +41,6 @@ export default class TableContainer extends Component {
     }
 
     render() {
-        console.log(this)
         const { schema } = this.props.match.params;
         const fields = (this.props.schemas[schema]) ? this.props.schemas[schema].fields : [];
         const { data } = this.props.models[schema] ? this.props.models[schema] : { data: {} };

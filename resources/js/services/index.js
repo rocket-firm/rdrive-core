@@ -24,5 +24,6 @@ export const {
 } = require('./request');
 export const {
   schemaAdapter,
-  modelAdapter
+  modelAdapter,
+  modelIdAdapter
 } = require('./adapter')

@@ -1,6 +1,6 @@
 import { getModelsFetch } from 'api';
 import { getModelsFetchId } from 'api';
-import { modelAdapter } from 'services';
+import { modelAdapter, modelIdAdapter } from 'services';
 
 const types = {
     GET_MODELS: 'GET_MODELS',
@@ -32,7 +32,7 @@ export const getModels = (name) => async (dispatch) => {
 
 export const getModelsId = (params) => async (dispatch) => {
     let data = await getModelsFetchId(params)
-    dispatch(successModelId(data))
+    dispatch(successModelId(modelIdAdapter(params, data)))
 }
 
 export default (state = initialState, { type, payload }) => {
