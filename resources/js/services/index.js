@@ -23,5 +23,6 @@ export const {
   fetchDecor
 } = require('./request');
 export const {
-  schemaAdapter
+  schemaAdapter,
+  modelAdapter
 } = require('./adapter')

@@ -7,3 +7,17 @@ export const schemaAdapter = ({data}) => {
     })
     return obj
 }
+
+export const modelAdapter = ({data, links, meta}, name) => {
+    const obj = {}
+    const array = data;
+    array.map((item) => {
+        obj[item.id] = item;
+    })
+    return {
+        data: obj,
+        links,
+        meta,
+        name
+    }
+}

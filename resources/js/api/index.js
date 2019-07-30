@@ -9,5 +9,6 @@ export const {
   getUserLogin,
   logoutUser,
   getSchemasList,
-  getModelsFetch
+  getModelsFetch,
+  getModelsFetchId
 } = require('./v1')

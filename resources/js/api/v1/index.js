@@ -8,7 +8,6 @@ export const getUserLogin = async (e) => {
         method: 'POST',
         body: formData
     })
-    console.dir(res)
     return res;
 }
 
@@ -37,6 +36,17 @@ export const getSchemasList = async () => {
 
 export const getModelsFetch = async (name) => {
     let res = await fetchDecor(`/api/admin/${name}/`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    return res.json()
+}
+
+export const getModelsFetchId = async ({schema, id}) => {
+    let res = await fetchDecor(`/api/admin/${schema}/${id}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',

@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 const TableUI = styled.table`
@@ -19,19 +20,19 @@ const TdUI = styled.td`
 `
 
 export default class TableContainer extends Component {
-    
+
     componentDidMount() {
-        const {schema} = this.props.match.params;   
-        const {getModels} = this.props;
+        const { schema } = this.props.match.params;
+        const { getModels } = this.props;
         getModels(schema);
     }
 
     shouldComponentUpdate(nextProps) {
-        const {schema} = this.props.match.params;   
-        const {models} = this.props;   
-        const {getModels} = this.props;
+        const { schema } = this.props.match.params;
+        const { models } = this.props;
+        const { getModels } = this.props;
 
-        if(models.isFetch) {
+        if (models.isFetch) {
             return false;
         } else {
             getModels(schema);
@@ -40,30 +41,34 @@ export default class TableContainer extends Component {
     }
 
     render() {
-        console.dir(this)
-        const {schema} = this.props.match.params; 
+        console.log(this)
+        const { schema } = this.props.match.params;
         const fields = (this.props.schemas[schema]) ? this.props.schemas[schema].fields : [];
-        const {data} = this.props.models[schema] ? this.props.models[schema] : {data: []};
-        return (    
+        const { data } = this.props.models[schema] ? this.props.models[schema] : { data: {} };
+        return (
             <div className="table-container">
                 <TableUI>
-                   <thead>
+                    <thead>
                         <tr>
                             {fields.map((item, key) => <ThUI key={key}>{item.key}</ThUI>)}
                         </tr>
-                   </thead>
-                   <tbody>
-                       {data.map((item, key)=> {
-                           return <tr key={key}>
-                               {fields.map((elem, keyElem) => {
-                                   console.log(item)
-                                   return (
-                                       <TdUI key={keyElem}>{item[elem.key]}</TdUI>
-                                   )
-                               })}
-                           </tr>
-                       })}
-                   </tbody>
+                    </thead>
+                    <tbody>
+                        {Object.entries(data).map((item, key) => {
+                            return <tr key={item[0]}>
+                                {
+                                    fields.map((elem, keyElem) => {
+                                        return (
+                                            <TdUI key={keyElem}>
+                                                <Link to={`${schema}/${item[0]}`}>{item[1][elem.key]}</Link>
+                                            </TdUI>
+                                        )
+                                    })
+                                }
+                            </tr>
+                        })}
+
+                    </tbody>
                 </TableUI>
             </div>
         )
