@@ -2,7 +2,6 @@
 
 namespace Rocketfirm\Rdrive\Http\Controllers;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Rocketfirm\Rdrive\Models\RdriveBaseModel;
@@ -21,18 +20,7 @@ class RdriveCrudController extends Controller
 
     public function index(Request $request)
     {
-        $lang = $request->header('Language', 'ru');
-
-        $query = $this->getLangQuery($lang);
-
-        return $this->modelResourceClass::collection($query->paginate());
-    }
-
-    public function show($id)
-    {
-        $model = $this->getModel($id);
-
-        return $this->serializeModel($model);
+        return $this->modelResourceClass::collection($this->modelClass::paginate());
     }
 
     public function showBySlug($slug)

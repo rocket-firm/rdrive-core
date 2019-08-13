@@ -6,27 +6,43 @@ Route::group([
     'as' => 'api.admin.',
     'prefix' => 'api/admin',
     'namespace' => $namespace,
-//    'middleware' => ['api', 'auth:api']
+    'middleware' => ['api', 'localization']
 ], function () {
-
-    // Schemas
+    // Auth
     Route::group([
-        'as' => 'schemas.',
-        'prefix' => 'schemas',
+        'as' => 'auth.',
+        'prefix' => 'auth'
     ], function () {
-        Route::get('/', ['uses' => 'SchemaController@index', 'as' => 'index']);
+        Route::post('login', ['uses' => 'RdriveAuthController@login', 'as' => 'login']);
+        Route::group([
+            'middleware' => ['auth:api', 'role:admin']
+        ], function () {
+            Route::get('user', ['uses' => 'RdriveAuthController@user', 'as' => 'user']);
+            Route::post('logout', ['uses' => 'RdriveAuthController@logout', 'as' => 'logout']);
+        });
     });
 
-    // Translations
     Route::group([
-        'as' => 'translations.',
-        'prefix' => 'translations',
+        'middleware' => ['auth:api', 'role:admin']
     ], function () {
-        Route::get('locales', ['uses' => 'TranslationController@getLocales', 'as' => 'locales']);
+        // Schemas
+        Route::group([
+            'as' => 'schemas.',
+            'prefix' => 'schemas',
+        ], function () {
+            Route::get('/', ['uses' => 'SchemaController@index', 'as' => 'index']);
+        });
+
+        // Localizations
+        Route::group([
+            'as' => 'localizations.',
+            'prefix' => 'localizations',
+        ], function () {
+            Route::get('locales', ['uses' => 'LocalizationController@getLocales', 'as' => 'locales']);
+        });
+
+        Route::apiResources([
+            'localizations' => 'LocalizationController'
+        ]);
     });
-
-    Route::apiResources([
-        'translations' => 'TranslationController'
-    ]);
-
 });
