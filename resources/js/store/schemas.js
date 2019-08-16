@@ -1,4 +1,5 @@
 import { getSchemasList } from 'api';
+import {schemaAdapter} from 'services';
 
 export const types = {
   FETCH_SCHEMAS_REQUEST: 'FETCH_SCHEMAS_REQUEST',
@@ -17,7 +18,7 @@ export const fetchSchemasSuccess = payload => ({
 export const fetchSchemasList = () => async (dispatch) => {
   dispatch(fetchSchemasRequest());
   const data = await getSchemasList();
-  dispatch(fetchSchemasSuccess(data));
+  dispatch(fetchSchemasSuccess(schemaAdapter(data)));
 };
 
 export const initialState = {};

@@ -18,3 +18,10 @@ export const {
   initLocalizations,
   t,
 } = require('./localization');
+
+export const {
+  fetchDecor
+} = require('./request');
+export const {
+  schemaAdapter
+} = require('./adapter')

@@ -20,11 +20,7 @@ class RdriveCrudController extends Controller
 
     public function index(Request $request)
     {
-        $lang = $request->header('Language', 'ru');
-
-        $query = $this->getLangQuery($lang);
-
-        return $this->modelResourceClass::collection($query->paginate());
+        return $this->modelResourceClass::collection($this->modelClass::paginate());
     }
 
     public function showBySlug($slug)

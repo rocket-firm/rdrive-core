@@ -7,6 +7,7 @@ import Button from './Button';
 import H from './H';
 import SelectChangeContainer from '../../containers/SelectChangeContainer';
 import localizations from '../../store/localizations';
+import LogoutContainer from '../../containers/LogoutContainer';
 
 const SidebarUI = styled.nav`
   color: #3d4671;
@@ -141,13 +142,14 @@ const SidebarFooterUI = styled.div`
   }
 `;
 const Sidebar = (
-  {
+  { 
   settings: {
     common: {
       siteLogo,
       siteName,
       siteUri,
-    }, 
+    },
+
   } = {
     common: {
       siteLogo: null,
@@ -158,10 +160,10 @@ const Sidebar = (
   schemas,
   // title,
   // children,
-  data,
   // opened,
 }
 ) => {
+  const data = schemas.data || {};
   return (
     
   <SidebarUI>
@@ -187,7 +189,7 @@ const Sidebar = (
             </SidebarListItemUI>
           )})
         }
-      {data && data.map((item, idx) => {
+      {/* {data && data.map((item, idx) => {
         const { name, dataItem } = item;
         return typeof dataItem === 'string' ? (
           <SidebarListItemUI key={idx}>
@@ -207,7 +209,7 @@ const Sidebar = (
             </SidebarListItemUI>
           </Fragment>
         );
-      })}
+      })} */}
     </SidebarLinkListUI>
     <SelectChangeContainer />
     <SidebarFooterUI>
@@ -227,6 +229,9 @@ const Sidebar = (
       <ButtonPlainUI>
         {/* <i className="icon-question-round" /> */}
           {t('common.help', 'Help')}
+      </ButtonPlainUI>
+      <ButtonPlainUI>
+        <LogoutContainer/>
       </ButtonPlainUI>
       <figure className="sidebar__footer__signature">
         <H size="3" bold>
