@@ -19,7 +19,7 @@ class RdriveAuthController extends Controller
         if (auth()->attempt($credentials)) {
             if (auth()->user()->hasRole('admin')) {
                 $token = auth()->user()->createToken('Laravel Password Grant Client')->accessToken;
-                return response(['token' => $token]);
+                return response(new UserResource(auth()->user()))->header('Authorization', $token);
             } else {
                 return response(['message' => 'Forbidden.'], Response::HTTP_FORBIDDEN);
             }
@@ -34,7 +34,7 @@ class RdriveAuthController extends Controller
      */
     public function user()
     {
-        return response(new UserResource(auth()->user()));
+        return new UserResource(auth()->user());
     }
 
     /**
