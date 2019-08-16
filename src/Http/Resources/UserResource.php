@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'permissions' => array_map(function ($permission) {
                 return $permission['name'];
             }, $this->getAllPermissions()->toArray()),
+            'avatar' => 'http://i.pravatar.cc',
         ]);
     }
 }
