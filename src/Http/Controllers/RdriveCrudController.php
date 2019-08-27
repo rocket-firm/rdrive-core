@@ -47,8 +47,6 @@ class RdriveCrudController extends Controller
 
     public function toggle(Request $request, $id)
     {
-        $this->authorize('isAdmin');
-
         $this->validate($request, [
             'attribute' => 'required|string|max:255',
         ]);
@@ -65,8 +63,6 @@ class RdriveCrudController extends Controller
 
     public function move(Request $request, $id)
     {
-        $this->authorize('isAdmin');
-
         $this->validate($request, [
             'direction' => ['required', 'regex:/\b(up|down|start|end)\b/'],
         ]);
