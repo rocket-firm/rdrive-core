@@ -39,7 +39,7 @@
     "laravel/passport": "^7.2",
     "sven/flex-env": "^2.1",
     "spatie/eloquent-sortable": "^3.4",
-    "altynbek07/laravel-config-writer": "^1.2",
+    "daftspunk/laravel-config-writer": "*",
     "spatie/laravel-translation-loader": "^2.3",
     "arcanedev/laravel-lang": "^6.0",
     "spatie/laravel-permission": "^2.37",
