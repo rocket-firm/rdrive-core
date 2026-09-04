@@ -1,13 +1,13 @@
-export const {
+export {
   getLanguagesList,
   getLocalizationData,
   postMissedTranslations,
-  getSettings
-} = require('./mock');
+  getSettings,
+} from './mock';
 
-export const {
+export {
   getUserLogin,
   logoutUser,
   getSchemasList,
-  getModelsFetch
-} = require('./v1')
+  getModelsFetch,
+} from './v1';

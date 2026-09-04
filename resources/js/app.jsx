@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import '../css/app.css';
 import Routes from 'routes';
 import { Provider, connect } from 'react-redux';
 import store from 'store';
@@ -38,4 +39,8 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const rootElement = document.getElementById('app');
+
+if (rootElement) {
+  createRoot(rootElement).render(<App />);
+}

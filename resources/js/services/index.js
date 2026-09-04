@@ -1,27 +1,24 @@
-export const {
-  history,
-} = require('./history');
-export const {
+export {
   getNested,
   putNested,
-} = require('./nested');
-export const {
+} from './nested';
+export {
   saveStore,
   loadStore,
   initStoreSaving,
   loadStoreValues,
-} = require('./persistence');
-export const {
+} from './persistence';
+export {
   getLanguage,
   getLanguages,
   getLocalizationData,
   initLocalizations,
   t,
-} = require('./localization');
+} from './localization';
 
-export const {
-  fetchDecor
-} = require('./request');
-export const {
-  schemaAdapter
-} = require('./adapter')
+export {
+  fetchDecor,
+} from './request';
+export {
+  schemaAdapter,
+} from './adapter';

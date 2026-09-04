@@ -1,6 +1,4 @@
 import { getUserLogin, logoutUser } from 'api'
-import { stopSubmit } from 'redux-form'
-import { history } from 'services'
 
 const types = {
     SET_USER: 'SET_USER',
@@ -26,7 +24,8 @@ const authenticateLogout = () => ({
 export const initialState = {
     isAuthenticated: false,
     user: {},
-    token: null
+    token: null,
+    error: null
 }
 
 export const getUserAuthenticate = (e) => async (dispatch) => {
@@ -35,11 +34,14 @@ export const getUserAuthenticate = (e) => async (dispatch) => {
         if (res.status != 200) throw new Error('not corrected');
         let { token } = await res.json();
         dispatch(authenticateSuc(token))
+        return { ok: true };
     } catch (err) {
-        dispatch(stopSubmit('login', {
+        const errors = {
             email: 'incorrect',
             password: 'incorrect'
-        }))
+        };
+        dispatch(authenticateErr(err.message));
+        return { ok: false, errors };
     }
 }
 
@@ -48,9 +50,9 @@ export const logoutUserAuth = (token) => async (dispatch) => {
         let res = await logoutUser(token);
         if (res.status != 200) throw new Error('cannot logout')
         dispatch(authenticateLogout())
-        history.replace('/login')
-    } catch (err) {
-        alert(err)
+        return true;
+    } catch {
+        return false;
     }
 }
 
@@ -65,13 +67,15 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 isAuthenticated: true,
-                token: payload
+                token: payload,
+                error: null
             }
         case types.AUTHENTICATE_FAILURE:
             return {
                 ...state,
                 isAuthenticated: false,
-                token: null
+                token: null,
+                error: payload
             }
 
         case types.AUTHENTICATE_LOGOUT:
@@ -84,4 +88,3 @@ export default (state = initialState, { type, payload }) => {
             return state;
     }
 }
-

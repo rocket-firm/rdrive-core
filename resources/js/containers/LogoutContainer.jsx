@@ -1,33 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
-import { bindActionCreators } from 'redux';
-import { logoutUserAuth } from 'store/authorization'
+import { useNavigate } from 'react-router-dom';
+import { logoutUserAuth } from 'store/authorization';
 
-class LogoutContainer extends Component {
+const LogoutContainer = ({ user, logoutUserAuth: logout }) => {
+  const navigate = useNavigate();
 
-    logoutUser(e) {
-        e.preventDefault()
-        const { token } = this.props.user;
-        const { logoutUserAuth } = this.props
-        logoutUserAuth(token)
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    if (await logout(user.token)) {
+      navigate('/login/', { replace: true });
     }
+  };
 
-    render() {
-        return (
-            <a onClick={this.logoutUser.bind(this)}>Logout</a>
-        )
-    }
-}
+  return (
+    <a href="/admin/login/" onClick={handleLogout}>Logout</a>
+  );
+};
 
-export default connect(({
-    user
-}) => {
-    return ({
-        user
-    })
-},
-    dispatch => bindActionCreators({
-        logoutUserAuth
-    }, dispatch)
-)(LogoutContainer)
+export default connect(
+  ({ user }) => ({ user }),
+  { logoutUserAuth },
+)(LogoutContainer);

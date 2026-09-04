@@ -5,7 +5,7 @@ import { fetchSettings } from 'store/settings';
 import { fetchSchemasList } from 'store/schemas';
 
 class SchemasContainer extends Component {
-    componentWillMount() {
+    componentDidMount() {
         const {
           fetchSettings: fetchSettingsComp,
           fetchSchemasList: fetchSchemasListComp

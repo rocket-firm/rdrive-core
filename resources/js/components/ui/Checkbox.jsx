@@ -41,7 +41,7 @@ const StyledCheckbox = styled.div`
     :hover{
         border-color:#4DA1FF
     }
-  
+
   ${Icon} {
     visibility: ${props => (props.checked ? 'visible' : 'hidden')}
   }

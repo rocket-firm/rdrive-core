@@ -30,7 +30,7 @@ const DropdownArrowsWrapperUI = styled.div`
 const DropdownArrowsUI = styled.div`
   position: relative;
   display: inline-block;
-  
+
 `;
 
 const DropdownArrows = () => {
