@@ -17,6 +17,7 @@
     "cross-env": "^5.2.0",
     "flatpickr": "^4.6.1",
     "history": "^4.9.0",
+    "immutable": "^4.3.9",
     "laravel-mix": "^4.0.15",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -25,7 +26,7 @@
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
-    "redux-form": "^8.2.4",
+    "redux-form": "^8.3.10",
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.5.2",
     "styled-components": "^4.2.0"
