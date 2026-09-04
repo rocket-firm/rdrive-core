@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
-import { bindActionCreators } from 'redux';
-import { getUserAuthenticate } from 'store/authorization';
+import { useNavigate } from 'react-router-dom';
+import { getUserAuthenticate, initialState as initialUserState } from 'store/authorization';
 import LoginInput from 'components/ui/LoginInput';
-import AuthentificateCont from './AuthentificateCont';
 import styled from 'styled-components';
 
 const FormContainerUI = styled.div`
@@ -26,59 +24,57 @@ const ButtonUI = styled.button`
     background-color: blue;
     cursor: pointer;
 `
-class Authorization extends AuthentificateCont {
-
-    sendUserData(e) {
-        const { getUserAuthenticate } = this.props;
-        getUserAuthenticate(e)
-    };
-    shouldComponentUpdate(nextProps) {
-        const { user } = nextProps;
-        if (user.isAuthenticated) {
-            nextProps.history.push('/dashboard')
-        }
-        return true
-    }
-    render() {
-        const { handleSubmit } = this.props;
-        return (
-            <FormContainerUI>
-                <FormUI onSubmit={handleSubmit(this.sendUserData.bind(this))}>
-                    <Field name="email" component={LoginInput} type="email" label="email" />
-                    <Field name="password" component={LoginInput} type="password" label="password" />
-                    <ButtonUI type="submit">Submit</ButtonUI>
-                </FormUI>
-            </FormContainerUI>
-        )
-    }
-}
-
-Authorization = reduxForm({
-    // a unique name for the form
-    form: 'login'
-})(Authorization)
-
-const selector = formValueSelector('login')
-
-Authorization = connect(
-    state => {
-        // or together as a group
-        const { email, password } = selector(state, 'email', 'password')
-        return {
-            email,
-            password
-        }
-    }
-)(Authorization)
-
-export default connect(({
-    user
+const Authorization = ({
+    user = initialUserState,
+    getUserAuthenticate: authenticateUser,
 }) => {
-    return ({
-        user
-    })
-},
-    dispatch => bindActionCreators({
-        getUserAuthenticate
-    }, dispatch)
+    const navigate = useNavigate();
+    const isAuthenticated = Boolean(user && user.isAuthenticated);
+    const [credentials, setCredentials] = useState({ email: '', password: '' });
+    const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/dashboard/', { replace: true });
+        }
+    }, [isAuthenticated, navigate]);
+
+    const handleChange = ({ target: { name, value } }) => {
+        setCredentials(current => ({ ...current, [name]: value }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const result = await authenticateUser(credentials);
+        setErrors(result.ok ? {} : result.errors);
+    };
+
+    return (
+        <FormContainerUI>
+            <FormUI onSubmit={handleSubmit}>
+                <LoginInput
+                    name="email"
+                    type="email"
+                    label="email"
+                    value={credentials.email}
+                    error={errors.email}
+                    onChange={handleChange}
+                />
+                <LoginInput
+                    name="password"
+                    type="password"
+                    label="password"
+                    value={credentials.password}
+                    error={errors.password}
+                    onChange={handleChange}
+                />
+                <ButtonUI type="submit">Submit</ButtonUI>
+            </FormUI>
+        </FormContainerUI>
+    );
+};
+
+export default connect(
+    ({ user }) => ({ user }),
+    { getUserAuthenticate },
 )(Authorization);

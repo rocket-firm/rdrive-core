@@ -6,12 +6,16 @@ const InputUI = styled.input`
     margin-bottom: 20px;
 `
 
-const LoginInput = ({input, meta, label, type}) => {
-    const {invalid, error} = meta;
+const LoginInput = ({ error, label, name, onChange, type, value }) => {
     return <div>
                 <label>{`${label}:`}</label>
-                <InputUI {...input} type={type} />
-                {invalid ? <span>{error}</span> : null}
+                <InputUI
+                  name={name}
+                  type={type}
+                  value={value}
+                  onChange={onChange}
+                />
+                {error ? <span>{error}</span> : null}
             </div>
 }
 

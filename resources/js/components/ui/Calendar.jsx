@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import 'flatpickr/dist/flatpickr.css';
-import Flatpickr from 'flatpickr';
+import Flatpickr from 'react-flatpickr';
 import { Russian } from 'flatpickr/dist/l10n/ru';
 import Layout from './Layout';
 

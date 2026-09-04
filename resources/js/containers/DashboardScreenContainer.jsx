@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AuthentificateCont from './AuthentificateCont';
 import SchemasContainer from './SchemasContainer';
 import LayoutDefault from 'components/layouts/LayoutDefault';
 
@@ -14,8 +13,8 @@ import LayoutDefault from 'components/layouts/LayoutDefault';
 //   }
 // }
 
-class DashboardScreenContainer extends AuthentificateCont {
-  
+class DashboardScreenContainer extends Component {
+
   render() {
     return (
       <SchemasContainer>

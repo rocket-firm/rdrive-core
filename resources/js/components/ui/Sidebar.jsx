@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,6 @@ import { t } from 'services';
 import Button from './Button';
 import H from './H';
 import SelectChangeContainer from '../../containers/SelectChangeContainer';
-import localizations from '../../store/localizations';
 import LogoutContainer from '../../containers/LogoutContainer';
 
 const SidebarUI = styled.nav`
@@ -100,7 +99,7 @@ const SidebarListItemUI = styled.li`
   }
   ${({ sub }) => sub
     && `
-    background:red;  
+    background:red;
 
 
   `};
@@ -142,7 +141,7 @@ const SidebarFooterUI = styled.div`
   }
 `;
 const Sidebar = (
-  { 
+  {
   settings: {
     common: {
       siteLogo,
@@ -162,10 +161,8 @@ const Sidebar = (
   // children,
   // opened,
 }
-) => {
-  const data = schemas.data || {};
-  return (
-    
+) => (
+
   <SidebarUI>
     <BrandUI>
       <figure>
@@ -238,14 +235,13 @@ const Sidebar = (
             Rocket Engine
         </H>
         <img
-          src={require('../../../../public/images/image-rocketfirm-logo.png')}
+          src="/vendor/rdrive/images/image-rocketfirm-logo.png"
           alt="Brand name"
         />
       </figure>
     </SidebarFooterUI>
   </SidebarUI>
-)
-};
+);
 
 export default connect((
   {localizations: {language},

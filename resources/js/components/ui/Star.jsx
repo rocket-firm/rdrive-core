@@ -37,7 +37,7 @@ const StyledStar = styled.svg`
   }
   ${Icon} {
     visibility: ${props => (props.checked ? 'visible' : 'hidden')};
-    
+
   }
 `;
 

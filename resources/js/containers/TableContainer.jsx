@@ -19,16 +19,16 @@ const TdUI = styled.td`
 `
 
 export default class TableContainer extends Component {
-    
+
     componentDidMount() {
-        const {schema} = this.props.match.params;   
+        const {schema} = this.props.match.params;
         const {getModels} = this.props;
         getModels(schema);
     }
 
-    shouldComponentUpdate(nextProps) {
-        const {schema} = this.props.match.params;   
-        const {models} = this.props;   
+    shouldComponentUpdate(_nextProps) {
+        const {schema} = this.props.match.params;
+        const {models} = this.props;
         const {getModels} = this.props;
 
         if(models.isFetch) {
@@ -41,10 +41,10 @@ export default class TableContainer extends Component {
 
     render() {
         console.dir(this)
-        const {schema} = this.props.match.params; 
+        const {schema} = this.props.match.params;
         const fields = (this.props.schemas[schema]) ? this.props.schemas[schema].fields : [];
         const {data} = this.props.models[schema] ? this.props.models[schema] : {data: []};
-        return (    
+        return (
             <div className="table-container">
                 <TableUI>
                    <thead>

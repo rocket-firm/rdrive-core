@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import AuthentificateCont from './AuthentificateCont';
 import SchemasContainer from './SchemasContainer';
 import LayoutDefault from 'components/layouts/LayoutDefault';
 import TableContainer from './TableContainer';
 import { bindActionCreators } from 'redux';
 import {getModels} from 'store/models';
 
-class TableScreenContainer extends AuthentificateCont {
-    
+class TableScreenContainer extends Component {
+
     render() {
         return (
             <SchemasContainer>
@@ -26,14 +25,13 @@ class TableScreenContainer extends AuthentificateCont {
 export default  connect(
     ({
         schemas,
-        models,        
+        models,
     }) => ({
         schemas,
         models
     }),
     dispatch => bindActionCreators({
         getModels
-    }, dispatch)   
+    }, dispatch)
 )(TableScreenContainer)
-
 
