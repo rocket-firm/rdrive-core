@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logoutUserAuth } from 'store/authorization';
 
-const LogoutContainer = ({ user, logoutUserAuth: logout }) => {
+const LogoutContainer = ({ user = { token: null }, logoutUserAuth: logout }) => {
   const navigate = useNavigate();
 
   const handleLogout = async (event) => {
     event.preventDefault();
-    if (await logout(user.token)) {
+    if (await logout(user && user.token)) {
       navigate('/login/', { replace: true });
     }
   };

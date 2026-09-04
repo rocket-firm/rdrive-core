@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getUserAuthenticate } from 'store/authorization';
+import { getUserAuthenticate, initialState as initialUserState } from 'store/authorization';
 import LoginInput from 'components/ui/LoginInput';
 import styled from 'styled-components';
 
@@ -24,16 +24,20 @@ const ButtonUI = styled.button`
     background-color: blue;
     cursor: pointer;
 `
-const Authorization = ({ user, getUserAuthenticate: authenticateUser }) => {
+const Authorization = ({
+    user = initialUserState,
+    getUserAuthenticate: authenticateUser,
+}) => {
     const navigate = useNavigate();
+    const isAuthenticated = Boolean(user && user.isAuthenticated);
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        if (user.isAuthenticated) {
+        if (isAuthenticated) {
             navigate('/dashboard/', { replace: true });
         }
-    }, [navigate, user.isAuthenticated]);
+    }, [isAuthenticated, navigate]);
 
     const handleChange = ({ target: { name, value } }) => {
         setCredentials(current => ({ ...current, [name]: value }));
